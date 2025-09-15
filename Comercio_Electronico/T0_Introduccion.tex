@@ -1,0 +1,142 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---- Idioma y tipografía
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---- Márgenes y diseño
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{parskip}
+
+% ---- Colores y cajas
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+
+% ---- Colores propios
+\definecolor{uniPrimary}{HTML}{0A7AC3}
+\definecolor{uniSoft}{HTML}{E9F4FB}
+\definecolor{uniAccent}{HTML}{F5B700}
+
+% ---- Cajas útiles
+\newtcolorbox{ObjetivosBox}{
+	title={\faBullseye\; Objetivos},
+	colback=uniSoft,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{TemarioBox}{
+	title={\faBullseye\; Temario},
+	colback=uniSoft,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{NotaBox}{
+	title={\faStickyNote\; Nota},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{RecordatorioBox}{
+	title={\faBell\; Recordatorio},
+	colback=uniAccent!15,
+	colframe=uniAccent,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+% ---- Documento
+\begin{document}
+
+	% Portada rápida
+	\begin{center}
+		{\huge \textbf{Comercio Electrónico}} \\[0.5cm]
+		{\Large Universidad \;--\; Curso 2025} \\[0.3cm]
+		\rule{0.8\linewidth}{0.5pt} \\[0.3cm]
+		{\faUser\; Nombre del alumno: Alberto Díaz} \\[0.2cm]
+		{\faChalkboardTeacher\; Profesor: Vanesa Herrera} \\[1.2cm]
+	\end{center}
+
+	\section*{Introducción}
+
+	\begin{TemarioBox}
+		\begin{itemize}[leftmargin=1.5em]
+			\item Tema 1. Introducción
+			\item Tema 2. Infraestructura para COE
+			\item Tema 3. Marketing y posicionamiento web
+			\item Tema 4 + Tema 5. Confianza Seguridad y Legislación.
+		\end{itemize}
+	\end{TemarioBox}
+	\begin{ObjetivosBox}
+		\textbf{Aprendizaje Basado en Proyectos (PBL) -- Project Based Learning}
+		\begin{itemize}[leftmargin=1.5em]
+			\item Planteamiento de un problema real como punto de partida.
+			\item Investigación, análisis y búsqueda de soluciones innovadoras.
+			\item Desarrollo del pensamiento crítico y habilidades de resolución de problemas.
+			\item Trabajo colaborativo y gestión de equipos.
+			\item Enfoque multidisciplinar para abordar los retos del proyecto.
+		\end{itemize}
+
+		\vspace{0.5em}
+		\textbf{Aprendizaje-Servicio (ApS):}
+		\begin{itemize}[leftmargin=1.5em]
+			\item Realización de un servicio solidario vinculado al entorno.
+			\item Aplicación práctica de los conocimientos adquiridos.
+			\item Fomento del liderazgo, la comunicación y el compromiso social.
+			\item Desarrollo de competencias a través del trabajo de campo.
+		\end{itemize}
+
+		\textbf{Juntando las piezas:}
+		\begin{itemize}[leftmargin=1.5em]
+			\item Problema real
+			\item Investigación
+			\item Pensamiento crítico
+			\item Servicio solidario
+			\item Resolución de problemas
+			\item Liderazgo
+			\item Trabajo en grupo
+			\item Multidisciplinar
+			\item Comunicación
+			\item Compromiso
+			\item Trabajo de campo
+		\end{itemize}
+		\textbf{IMPORTANCIA DEL TRABAJO EN EQUIPO}
+	\end{ObjetivosBox}
+
+	\subsection*{Evaluación}
+
+	\begin{center}
+		\renewcommand{\arraystretch}{1.4} % más espacio entre filas
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Criterio} & \textbf{Porcentaje} & \textbf{Obligatorio} & \textbf{Recuperable} \\
+			\hline
+			Teoría (25\% cada parcial) & 50\% & Sí & Sí \\
+			Práctica & 25\% & Sí & Sí \\
+			Aprovechamiento en clase & 10\% & No & No \\
+			Trabajo teórico & 15\% & No & Sí \\
+			\hline
+			\textbf{Total} & \textbf{100\%} & & \\
+			\hline
+		\end{tabular}
+	\end{center}
+
+\end{document}
