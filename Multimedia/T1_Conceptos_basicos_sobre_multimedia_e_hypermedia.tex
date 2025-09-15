@@ -1,0 +1,302 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---- Idioma y tipografía
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}  % (si usas XeLaTeX/LuaLaTeX, elimínala)
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---- Márgenes y diseño
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{parskip}
+
+% ---- Enlaces
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+% ---- Cabeceras y pies
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\cfoot{\thepage}
+
+% ---- Listas y símbolos
+\usepackage{enumitem}
+\setlist{itemsep=0.25em, topsep=0.3em}
+
+% ---- Iconos y color
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% ---- Colores propios
+\definecolor{uniPrimary}{HTML}{0A7AC3}
+\definecolor{uniSoft}{HTML}{E9F4FB}
+\definecolor{uniAccent}{HTML}{F5B700}
+\definecolor{uniOK}{HTML}{2E7D32}
+\definecolor{uniWarn}{HTML}{C62828}
+
+% ---- Metadatos reutilizables
+\newcommand{\asignatura}{MULTIMEDIA}
+\newcommand{\tema}{TEMA 1 — Conceptos básicos sobre multimedia e Hipermedia}  % <-- cambia el título del tema aquí
+\newcommand{\clase}{Clase 1}
+\newcommand{\fecha}{\today}                              % <-- pon la fecha de la clase
+
+% ---- Cabecera con metadatos
+\lhead{\textsc{\asignatura}}
+\chead{\textbf{\tema}}
+\rhead{\clase\;|\; \fecha}
+
+% ---- Estética de secciones
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uniPrimary}}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{0.5em}{}
+
+% ---- Cajas útiles
+\newtcolorbox{ObjetivosBox}{
+	title={\faBullseye\; Índice},
+	colback=uniSoft,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{DefBox}{
+	title={\faBook\; Definición},
+	colback=white,
+	colframe=uniAccent,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{NotaBox}{
+	title={\faStickyNote\; Nota},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{RecordatorioBox}{
+	title={\faBell\; Recordatorio},
+	colback=uniAccent!15,
+	colframe=uniAccent,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{ChecklistBox}{
+	title={\faTasks\; Tareas / Checklist},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{ResumenBox}{
+	title={\faHighlighter\; Resumen rápido (5 líneas)},
+	colback=uniSoft,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{VocabBox}{
+	title={\faLanguage\; Vocabulario clave},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+% ---- Tabla estilo evaluación (por si la necesitas hoy)
+\newcommand{\TablaEvaluacion}{
+	\begin{center}
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Criterio} & \textbf{Porcentaje} & \textbf{Obligatorio} & \textbf{Recuperable} \\
+			\hline
+			Teoría (25\% cada parcial) & 50\% & Sí & Sí \\
+			Práctica & 25\% & Sí & Sí \\
+			Aprovechamiento en clase & 10\% & No & No \\
+			Trabajo teórico & 15\% & No & Sí \\
+			\hline
+			\textbf{Total} & \textbf{100\%} &  &  \\
+			\hline
+		\end{tabular}
+	\end{center}
+}
+
+% =========================================================
+\begin{document}
+	
+	% ---- Cabecera de ficha de clase (rellenable en cada sesión)
+	{\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill \textit{\clase, \fecha}}\\[0.4em]
+	\faUser\; Alumno/a: Alberto Díaz\hfill
+	\faChalkboardTeacher\; Profesor/a: Ana Fernández
+	
+	\vspace{0.6em}
+	
+	\tableofcontents
+	
+	% ---- Conceptos clave y definiciones
+	\section{Definiciones}
+	\begin{DefBox}
+		\textbf{Multimedia:} Representación integrada de la información en forma de texto, gráficos, imágenes, vídeo.
+		
+		La multimedia no tiene porque ser interactiva. No necesariamente tiene que ser digital.
+	\end{DefBox}
+	
+	
+	
+	\begin{DefBox}
+		\textbf{Aplicación multimedia:} Software capaz de ofrecer información al usuario integrando distintos medios de representación multimedia.
+		
+		La información multimedia se procesa y almacena digitalmente.
+	\end{DefBox}
+	
+	\begin{DefBox}
+		\textbf{Elemento Interactivo: } Un elemento es interactivo cuando responde a la entrada de información del usuario. El usuario debe poder tomar una decisión de iniciar la interacción, de forma explicita o implícita.
+	\end{DefBox}
+	
+	\begin{DefBox}
+		\textbf{Hipertexto} Sistema de organización de datos basado en la vinculación de bloques de información llamados nodos.
+	\end{DefBox}
+	
+	\begin{DefBox}
+		\textbf{Hipermedia} Hipertexto + Multimedia. Conectar fragmentos de información que no necesariamente tienen porque ser texto si no cualquier tipo de multimedia.
+	\end{DefBox}
+	
+	\subsection{Diferencias entre Multimedia, Hipertexto y Hipermedia}
+
+	\begin{center}
+		\renewcommand{\arraystretch}{1.4} % más espacio entre filas
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Criterio} & \textbf{Multimedia} & \textbf{Hipertexto} & \textbf{Hipermedia} \\
+			\hline
+			\textbf{Contenido} 
+			& Más de un medio
+			& Solo un medio (texto) 
+			& Más de un medio (texto + otros) \\
+			\hline
+			\textbf{Enlaces} 
+			& No 
+			& Sí (entre textos) 
+			& Sí (entre distintos medios) \\
+			\hline
+			\textbf{Navegación} 
+			& No (Linear)
+			& Sí (No linear)
+			& Sí \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\subsection{Medios multimedia y Contexto}
+	\begin{DefBox}
+		\textbf{Medio} Canal que permite la distribución y comunicación de la información: Texto, gráficos, imagen, audio y vídeo.
+	\end{DefBox}
+	
+	\subsubsection{Clasificación en función del tiempo}
+	
+	\begin{itemize}[leftmargin=1.5em]
+		\item \textbf{Medios continuos (dependientes del tiempo):}  
+		Requieren una secuencia temporal para ser comprendidos.  
+		Ejemplos: \textit{audio, vídeo}.
+		
+		\item \textbf{Medios discretos (independientes del tiempo):}  
+		No dependen de la dimensión temporal para interpretarse.  
+		Ejemplos: \textit{texto, imágenes}.
+	\end{itemize}
+	
+	\begin{NotaBox}
+		\textbf{Contexto:} Esta clasificación se aplica en el ámbito de las \textbf{comunicaciones audiovisuales digitales}.
+	\end{NotaBox}
+	
+	\subsection*{La importancia del usuario}
+	\begin{DefBox}
+		\textbf{Percepción} La forma en la que el cerebro interpreta los estímulos del exterior. Las percepciones evocan \textbf{sensaciones}.
+	\end{DefBox}
+
+	\begin{DefBox}
+		\textbf{Sensaciones} Impresiones que los estímulos externos generan sobre las personas. Percepción de un cambio o desequilibrio.
+	\end{DefBox}
+	
+	\begin{DefBox}
+		\textbf{Emociones} Respuesta que aparece después de la sensación, alegría, tristeza...
+	\end{DefBox}
+	
+	\textbf{Ejemplo}:  
+	Veo una nube negra $\rightarrow$ \textit{percepción}.  
+	Pienso que va a llover $\rightarrow$ \textit{sensación}.  
+	Me invade la tristeza $\rightarrow$ \textit{emoción}.
+	
+	\section{Reseña Histórica}
+	Primeras comunicaciones visuales surgían en la prehistoria pero no eran multimedia
+	
+	El invento del \textbf{transistor} fue importante para el desarrollo de la multimedia.
+	
+	\begin{itemize}[]
+		\item \textbf{1945} Vannebar Bush propuso que los computadores deberían usarse como soporte del trabajo intelectual. Almacenamiento y comunicación de contenido multimedia y conocimiento de la humanidad. \textbf{(MEMEX) Memory Extension.}
+		
+		\item \textbf{1983} Se desarrolla \textbf{Intermedia}. Programación de creación hipertextual para UNIX.
+		
+		\item \textbf{1984} Apple lanza el \textbf{primer Macintosh} con interfaz gráfica. Primera computadora con altas capacidades de reproducción de sonidos y diseño gráfico.
+		
+		\item \textbf{1980´s} Aparecen \textbf{videojuegos} y software de entretenimiento.
+		
+		\item \textbf{1992} Es posible integrar audio, sonido  y voz, gráficas, animación de texto. Se expande la world wide web.
+		
+		\item \textbf{1995-2016} Gran evolución. Aparece el \textbf{metaverso}.
+	\end{itemize}
+	
+	\subsection{Punto de inflexión: 1995-2000}
+	
+	\begin{itemize}[]
+		\item Se extiende la señal analógica TV.
+		\item \textbf{VHS}: Principal medio para grabar.
+		\item Los teléfonos solo tenían llamadas y SMS.
+		\item Conexión a internet es lenta. Modem.
+		\item Páginas web son \textbf{estáticas}
+	\end{itemize}
+	
+	\subsection{Punto de inflexión: 2015-2016}
+
+	\begin{itemize}[]
+		\item Señal digital de TV
+		\item Teléfonos móviles son \textbf{smartphones} con muchas funciones.
+		\item Páginas web son sitios interactivos, dinámicas.
+		\item Mejor conexión a internet.
+		\item Videollamadas.
+		\item Se desarrollan las redes sociales.
+	\end{itemize}
+	
+	\subsection{Punto de inflexión: Escena actual}
+
+	\begin{itemize}[]
+		\item Inteligencia Artificial.
+		\item Segmentación de imágenes en tiempo real
+		\item Realidad Virtual y Aumentada
+		\item ChatGPT
+	\end{itemize}
+
+\end{document}

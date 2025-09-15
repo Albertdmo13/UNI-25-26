@@ -1,0 +1,107 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---- Idioma y tipografía
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---- Márgenes y diseño
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{parskip}
+
+% ---- Colores y cajas
+\usepackage[most]{tcolorbox}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{fontawesome5}
+
+% ---- Colores propios
+\definecolor{uniPrimary}{HTML}{0A7AC3}
+\definecolor{uniSoft}{HTML}{E9F4FB}
+\definecolor{uniAccent}{HTML}{F5B700}
+
+% ---- Cajas útiles
+\newtcolorbox{ObjetivosBox}{
+	title={\faBullseye\; Objetivos},
+	colback=uniSoft,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{NotaBox}{
+	title={\faStickyNote\; Nota},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{RecordatorioBox}{
+	title={\faBell\; Recordatorio},
+	colback=uniAccent!15,
+	colframe=uniAccent,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+% ---- Documento
+\begin{document}
+	
+	% Portada rápida
+	\begin{center}
+		{\huge \textbf{Apuntes de Multimedia}} \\[0.5cm]
+		{\Large Universidad \;--\; Curso 2025} \\[0.3cm]
+		\rule{0.8\linewidth}{0.5pt} \\[0.3cm]
+		{\faUser\; Nombre del alumno: Alberto Díaz} \\[0.2cm]
+		{\faChalkboardTeacher\; Profesor: Ana Fernandez} \\[1.2cm]
+	\end{center}
+	
+	\section*{Introducción}
+	
+	\begin{ObjetivosBox}
+		\begin{itemize}[leftmargin=1.5em]
+			\item Identificar contenidos digitales.
+			\item Conocer técnicas de comprensión multimedia.
+		\end{itemize}
+	\end{ObjetivosBox}
+	
+	\subsection*{Evaluación}
+	
+	\begin{center}
+		\renewcommand{\arraystretch}{1.4} % más espacio entre filas
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Criterio} & \textbf{Porcentaje} & \textbf{Obligatorio} & \textbf{Recuperable} \\
+			\hline
+			Teoría (25\% cada parcial) & 50\% & Sí & Sí \\
+			Práctica & 25\% & Sí & Sí \\
+			Aprovechamiento en clase & 10\% & No & No \\
+			Trabajo teórico & 15\% & No & Sí \\
+			\hline
+			\textbf{Total} & \textbf{100\%} & & \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\begin{NotaBox}
+		\textbf{Requisito:} Hay que sacar al menos un \textbf{5 en cada parcial} para que haga media.
+	\end{NotaBox}
+	
+	\begin{RecordatorioBox}
+		\begin{itemize}
+			\item La \textbf{parte práctica} consiste en desarrollar una aplicación (probablemente en grupos).  
+			\textit{Inicio: 6 de Octubre. Presentación y defensa incluidas.}
+			\item La \textbf{participación en clase} se evalúa contestando preguntas, atendiendo y siendo activo.
+		\end{itemize}
+	\end{RecordatorioBox}
+	
+\end{document}
