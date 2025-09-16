@@ -34,7 +34,7 @@
 }
 
 \newtcolorbox{TemarioBox}{
-	title={\faBullseye\; Temario},
+	title={\faBook\; Temario},
 	colback=uniSoft,
 	colframe=uniPrimary,
 	enhanced, breakable,
@@ -66,77 +66,128 @@
 % ---- Documento
 \begin{document}
 
-	% Portada rápida
+	% Portada mejorada
 	\begin{center}
-		{\huge \textbf{Comercio Electrónico}} \\[0.5cm]
-		{\Large Universidad \;--\; Curso 2025} \\[0.3cm]
-		\rule{0.8\linewidth}{0.5pt} \\[0.3cm]
-		{\faUser\; Nombre del alumno: Alberto Díaz} \\[0.2cm]
-		{\faChalkboardTeacher\; Profesor: Vanesa Herrera} \\[1.2cm]
+		\centering
+		\vspace*{2cm}
+		{\huge \bfseries Comercio Electrónico \par}
+		\vspace{0.7cm}
+		{\Large Universidad de Castilla-La Mancha -- Curso 2025 \par}
+		\vspace{0.5cm}
+		\rule{0.8\linewidth}{0.8pt} \par
+		\vspace{0.5cm}
+		{\faUser\; \textbf{Alumno:} Alberto Díaz \par}
+		\vspace{0.2cm}
+		{\faChalkboardTeacher\; \textbf{Profesora:} Vanesa Herrera Tirado \par}
+		\vspace{0.2cm}
+		{\faEnvelope\; \texttt{vanesa.herrera@uclm.es} \par}
+		\vfill
 	\end{center}
 
-	\section*{Introducción}
+	\section*{Profesorado}
+	\begin{itemize}[leftmargin=1.5em]
+		\item \textbf{Profesora}: Vanesa Herrera Tirado
+		\item Grupo de investigación AIR:
+		\item Contratada a cargo de proyectos de investigación
+		\item Experiencia en empresas, máster y docencia
+	\end{itemize}
 
+	\section*{Horario de Tutorías}
+	\begin{itemize}[leftmargin=1.5em]
+		\item \textbf{Lunes}: 9:30\,h -- 12:30\,h
+		\item \textbf{Jueves}: 9:30\,h -- 12:30\,h
+	\end{itemize}
+
+	\section*{Horario de Clase}
+	\begin{itemize}[leftmargin=1.5em]
+		\item \textbf{Lunes} (Laboratorio): 18:30\,h -- 19:50\,h
+		\item \textbf{Martes} (Teoría, Aula 2.2 Grace Murray):
+		\begin{itemize}
+			\item 17:00\,h -- 18:20\,h
+			\item 18:30\,h -- 19:50\,h
+		\end{itemize}
+	\end{itemize}
+
+	\section*{Introducción}
 	\begin{TemarioBox}
 		\begin{itemize}[leftmargin=1.5em]
 			\item Tema 1. Introducción
 			\item Tema 2. Infraestructura para COE
 			\item Tema 3. Marketing y posicionamiento web
-			\item Tema 4 + Tema 5. Confianza Seguridad y Legislación.
+			\item Tema 4. Confianza y seguridad en COE
+			\item Tema 5. Legislación aplicable a COE
 		\end{itemize}
 	\end{TemarioBox}
+
 	\begin{ObjetivosBox}
-		\textbf{Aprendizaje Basado en Proyectos (PBL) -- Project Based Learning}
+		\textbf{Competencias generales (BOE 4/8/2009):}\\
+		Capacidad de concebir sistemas, aplicaciones y servicios basados en tecnologías de red (Internet, web, comercio electrónico, multimedia, servicios interactivos y computación móvil).
+
+		\vspace{0.7em}
+		\textbf{Aprendizaje Basado en Proyectos (PBL):}
 		\begin{itemize}[leftmargin=1.5em]
-			\item Planteamiento de un problema real como punto de partida.
-			\item Investigación, análisis y búsqueda de soluciones innovadoras.
-			\item Desarrollo del pensamiento crítico y habilidades de resolución de problemas.
-			\item Trabajo colaborativo y gestión de equipos.
-			\item Enfoque multidisciplinar para abordar los retos del proyecto.
+			\item Problema complejo/real como punto de partida.
+			\item Investigación, análisis y pensamiento crítico.
+			\item Trabajo en grupo y multidisciplinar.
 		\end{itemize}
 
-		\vspace{0.5em}
+		\vspace{0.7em}
 		\textbf{Aprendizaje-Servicio (ApS):}
 		\begin{itemize}[leftmargin=1.5em]
-			\item Realización de un servicio solidario vinculado al entorno.
-			\item Aplicación práctica de los conocimientos adquiridos.
-			\item Fomento del liderazgo, la comunicación y el compromiso social.
-			\item Desarrollo de competencias a través del trabajo de campo.
+			\item Servicio solidario vinculado al entorno.
+			\item Resolución de problemas y liderazgo.
+			\item Comunicación, compromiso y trabajo de campo.
 		\end{itemize}
 
-		\textbf{Juntando las piezas:}
-		\begin{itemize}[leftmargin=1.5em]
-			\item Problema real
-			\item Investigación
-			\item Pensamiento crítico
-			\item Servicio solidario
-			\item Resolución de problemas
-			\item Liderazgo
-			\item Trabajo en grupo
-			\item Multidisciplinar
-			\item Comunicación
-			\item Compromiso
-			\item Trabajo de campo
-		\end{itemize}
-		\textbf{IMPORTANCIA DEL TRABAJO EN EQUIPO}
+		\vspace{0.7em}
+		\textbf{Juntando las piezas:}\\
+		Problema real, investigación, pensamiento crítico, trabajo en grupo, multidisciplinar, servicio solidario, resolución de problemas, liderazgo, comunicación, compromiso y trabajo de campo.
+
+		\vspace{0.7em}
+		\textbf{IMPORTANCIA DEL TRABAJO EN EQUIPO}.
 	\end{ObjetivosBox}
 
 	\subsection*{Evaluación}
-
 	\begin{center}
-		\renewcommand{\arraystretch}{1.4} % más espacio entre filas
-		\begin{tabular}{|l|c|c|c|}
+		\renewcommand{\arraystretch}{1.4}
+		\begin{tabular}{|p{5.5cm}|c|c|c|}
 			\hline
-			\textbf{Criterio} & \textbf{Porcentaje} & \textbf{Obligatorio} & \textbf{Recuperable} \\
+			\textbf{Criterio} & \textbf{Puntos / \%} & \textbf{Obligatorio} & \textbf{Recuperable} \\
 			\hline
-			Teoría (25\% cada parcial) & 50\% & Sí & Sí \\
-			Práctica & 25\% & Sí & Sí \\
-			Aprovechamiento en clase & 10\% & No & No \\
-			Trabajo teórico & 15\% & No & Sí \\
+			Pruebas de progreso (P1--P3) & 5 (50\%) & Sí & Sí \\
+			Interacción en clase & 1 (10\%) & No & No \\
+			Trabajo teórico ind.(Portfolio) & 1,5 (15\%) & No & Sí \\
+			Trabajo en grupo (proyecto real) & 2,5 (25\%) & Sí & Sí \\
 			\hline
-			\textbf{Total} & \textbf{100\%} & & \\
+			\textbf{Total} & \textbf{10 (100\%)} & & \\
 			\hline
 		\end{tabular}
 	\end{center}
+
+	\begin{NotaBox}
+		\begin{itemize}[leftmargin=1.5em]
+			\item Las pruebas de progreso son acumulativas: \textbf{P1} (0,75 ptos), \textbf{P2} (1,5 ptos), \textbf{P3} (2,75 ptos).
+			\item El trabajo en grupo incluye diseño y desarrollo de un problema real de COE, con reparto autónomo de la nota entre los integrantes.
+			\item El trabajo teórico individual consiste en una solución web (el producto sois vosotros).
+			\item Los puntos del trabajo en grupo se reparten por nosotros.
+		\end{itemize}
+	\end{NotaBox}
+
+	\begin{RecordatorioBox}
+		\textbf{Sistema de tickets:} Se obtienen cumpliendo actividades y pueden canjearse por:
+		\begin{itemize}[leftmargin=1.5em]
+			\item Pasar pregunta tipo test
+			\item Ayuda en pregunta de examen
+			\item Tiempo extra de entrega
+			\item Pista para pregunta de estudio/examen
+			\item Tiempo extra en examen
+			\item Turno prioritario
+		\end{itemize}
+	\end{RecordatorioBox}
+
+	Trabajo Práctico en Grupo (TPG):
+	25% De asignatura
+	Desarrollar una solución de comercio electrónico real para una PYME local.
+	Grupos de 5 personas.
 
 \end{document}
