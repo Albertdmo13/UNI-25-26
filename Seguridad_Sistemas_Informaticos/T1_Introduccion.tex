@@ -1,0 +1,246 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---- Idioma y tipografía
+\usepackage[spanish, es-noquoting, es-noshorthands]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % eliminar si usas XeLaTeX/LuaLaTeX
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---- Márgenes y diseño
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{parskip}
+
+% ---- Enlaces
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+
+% ---- Cabeceras y pies
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\asignatura}}
+\chead{\textbf{\tema}}
+\rhead{\clase\;|\; \fecha}
+\cfoot{\thepage}
+
+% ---- Listas y símbolos
+\usepackage{enumitem}
+\setlist{itemsep=0.3em, topsep=0.5em}
+
+% ---- Iconos y color
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% ---- Colores propios
+\definecolor{uniPrimary}{HTML}{0A7AC3}
+\definecolor{uniSoft}{HTML}{E9F4FB}
+\definecolor{uniAccent}{HTML}{F5B700}
+\definecolor{uniOK}{HTML}{2E7D32}
+\definecolor{uniWarn}{HTML}{C62828}
+
+% ---- Metadatos reutilizables
+\newcommand{\asignatura}{Seguridad de Sistemas Informáticos}
+\newcommand{\tema}{Tema 1 — Introducción}
+\newcommand{\clase}{Clase 1}
+\newcommand{\fecha}{\today}
+
+% ---- Estética de secciones
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uniPrimary}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{0.5em}{}
+
+% ---- Cajas reutilizables
+\tcbset{
+    commonstyle/.style={
+        enhanced, breakable,
+        left=8pt,right=8pt,top=8pt,bottom=8pt,
+        boxrule=0.8pt,
+        fonttitle=\bfseries
+    }
+}
+
+\newtcolorbox{ObjetivosBox}[1][]{
+    commonstyle,
+    title={\faBullseye\; Índice},
+    colback=uniSoft, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{DefBox}[1][]{
+    commonstyle,
+    title={\faBook\; Definición},
+    colback=white, colframe=uniAccent,#1
+}
+
+\newtcolorbox{NotaBox}[1][]{
+    commonstyle,
+    title={\faStickyNote\; Nota},
+    colback=white, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{RecordatorioBox}[1][]{
+    commonstyle,
+    title={\faBell\; Recordatorio},
+    colback=uniAccent!15, colframe=uniAccent,#1
+}
+
+\newtcolorbox{ChecklistBox}[1][]{
+    commonstyle,
+    title={\faTasks\; Tareas / Checklist},
+    colback=white, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{ResumenBox}[1][]{
+    commonstyle,
+    title={\faHighlighter\; Resumen rápido (5 líneas)},
+    colback=uniSoft, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{VocabBox}[1][]{
+    commonstyle,
+    title={\faLanguage\; Vocabulario clave},
+    colback=white, colframe=uniPrimary,#1
+}
+
+% =========================================================
+\begin{document}
+
+    % ---- Cabecera de ficha de clase
+    {\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill \textit{\clase, \fecha}}\\[0.6em]
+    \faUser\; Alumno/a: \rule{5cm}{0.4pt} \hfill
+    \faChalkboardTeacher\; Profesor/a: \rule{5cm}{0.4pt}
+
+    \vspace{1em}
+    \tableofcontents
+    \vspace{1em}
+
+    \begin{NotaBox}
+        Apuntes \textit{resumidos y traducidos} del capítulo 1 (\textit{Overview}) de \textbf{Computer Security: Principles and Practice}. Referencias conceptuales: glosario NISTIR~7298 y FIPS~200. :contentReference[oaicite:1]{index=1}
+    \end{NotaBox}
+
+    \begin{ObjetivosBox}
+        \begin{itemize}
+            \item Definir seguridad informática y la tríada \textbf{CIA}.
+            \item Identificar activos, amenazas, ataques y contramedidas.
+            \item Resumir requisitos funcionales (FIPS~200) y principios de diseño.
+            \item Explicar \textit{superficie de ataque}, \textit{defensa en profundidad} y árboles de ataque.
+            \item Esbozar política, implementación, \textit{assurance} y evaluación. :contentReference[oaicite:2]{index=2}
+        \end{itemize}
+    \end{ObjetivosBox}
+
+    \section{Conceptos básicos}
+    \begin{DefBox}
+        \textbf{Seguridad informática:} Medidas y controles para asegurar \textbf{confidencialidad}, \textbf{integridad} y \textbf{disponibilidad} de los activos del sistema (HW, SW, firmware, datos en proceso/almacenamiento/transmisión). \textit{(NISTIR~7298)}. :contentReference[oaicite:3]{index=3}
+    \end{DefBox}
+
+    \subsection{Tríada CIA y niveles de impacto}
+    \begin{itemize}
+        \item \textbf{Confidencialidad:} \textbf{acceso/divulgación sólo a sujetos autorizados}. No se puede divulgar.
+        \item \textbf{Integridad:} \textbf{protección frente a modificación o destrucción indebida}; autenticidad y no repudio.
+        \item \textbf{Disponibilidad:} \textbf{acceso oportuno a la información/servicios}. Ininterrupción mínima.
+        \item \textbf{Impacto:} \textbf{bajo, moderado, alto} según el efecto adverso esperado en la organización o individuos.
+    \end{itemize}
+
+    \section{Retos de la seguridad}
+    \begin{itemize}
+        \item No es trivial: hay que anticipar ataques y ubicar bien los controles.
+        \item Requiere \textit{secretos} (claves, credenciales): creación, distribución y protección.
+        \item Los procedimientos suelen ser complejos y dificiles de entender.
+        \item El atacante necesita una sola vulnerabilidad; el defensor debe cerrar todas.
+        \item Suele añadirse tarde; demanda monitoreo continuo.
+        \item Percepción de “poca utilidad” hasta que ocurre un incidente; fricción con la usabilidad.
+    \end{itemize}
+
+    \section{Activos, amenazas y ataques}
+    \subsection{Activos y vulnerabilidades}
+    \begin{itemize}
+        \item \textbf{Activos:} hardware, software, datos, comunicaciones/redes.
+        \item \textbf{Vulnerabilidades:} pérdida de integridad (\textit{corruption}), confidencialidad (\textit{leakage}) o disponibilidad (\textit{unavailability}). :contentReference[oaicite:6]{index=6}
+    \end{itemize}
+
+    \subsection{Amenazas y ataques}
+    \begin{itemize}
+        \item \textbf{Amenaza:} circunstancia con potencial de dañar un activo explotando una debilidad.
+        \item \textbf{Ataques:} \emph{pasivos} (escucha, análisis de tráfico) vs. \emph{activos} (replay, suplantación, modificación, DoS); origen \emph{interno} o \emph{externo}. :contentReference[oaicite:7]{index=7}
+    \end{itemize}
+
+    \subsection{Contramedidas}
+    \begin{itemize}
+        \item \textbf{Prevenir} \(\rightarrow\) \textbf{Detectar} \(\rightarrow\) \textbf{Recuperar}; minimizar el riesgo residual (toda defensa puede introducir nuevas debilidades). :contentReference[oaicite:8]{index=8}
+    \end{itemize}
+
+    \section{Consecuencias típicas y acciones de ataque}
+    \begin{itemize}
+        \item \textbf{Divulgación no autorizada:} exposición, interceptación, inferencia, intrusión.
+        \item \textbf{Engaño:} suplantación, falsificación, repudio.
+        \item \textbf{Disrupción:} incapacitación, corrupción, obstrucción.
+        \item \textbf{Usurpación:} apropiación de recursos, uso indebido. \textit{(basado en RFC 4949)}. :contentReference[oaicite:9]{index=9}
+    \end{itemize}
+
+    \section{Requisitos de seguridad (síntesis FIPS~200)}
+    \begin{itemize}[leftmargin=1.2em]
+        \item Control de acceso; Concienciación y formación; Auditoría y \textit{accountability}.
+        \item Certificación/evaluaciones; Gestión de configuración; Continuidad/contingencia.
+        \item Identificación y autenticación; Respuesta a incidentes; Mantenimiento.
+        \item Protección de medios; Protección física/ambiental; Planificación.
+        \item Seguridad de personal; Gestión de riesgos.
+        \item Adquisición de sistemas/servicios; Protección de sistemas y comunicaciones.
+        \item Integridad de sistema e información. :contentReference[oaicite:10]{index=10}
+    \end{itemize}
+
+    \section{Principios de diseño de seguridad}
+    \begin{itemize}
+        \item Economía del mecanismo; \textit{Fail-safe defaults}; Mediación completa; Diseño abierto.
+        \item Separación y \textbf{mínimo} privilegio; Mecanismo común mínimo; Aceptabilidad psicológica.
+        \item Aislamiento, encapsulación, modularidad, \textit{layering}, sorpresa mínima. :contentReference[oaicite:11]{index=11}
+    \end{itemize}
+
+    \section{Superficie de ataque y árboles de ataque}
+    \subsection{Superficie de ataque}
+    \begin{itemize}
+        \item Conjunto de vulnerabilidades alcanzables/explotables: puertos y servicios, código que procesa entradas, interfaces/SQL/webforms, formatos de intercambio, y el factor humano (ingeniería social). :contentReference[oaicite:12]{index=12}
+    \end{itemize}
+    \subsection{Categorías}
+    \begin{itemize}
+        \item \textbf{Red}, \textbf{software} y \textbf{humana}. Relacionar con \textit{defensa en profundidad}. :contentReference[oaicite:13]{index=13}
+    \end{itemize}
+    \subsection{Árboles de ataque}
+    \begin{itemize}
+        \item Modelo jerárquico para descomponer objetivos del atacante (ej.: autenticación bancaria) y evaluar controles. :contentReference[oaicite:14]{index=14}
+    \end{itemize}
+
+    \section{Estrategia de seguridad}
+    \begin{itemize}
+        \item \textbf{Política:} reglas prácticas para proteger recursos críticos.
+        \item \textbf{Implementación:} prevención, detección, respuesta y recuperación.
+        \item \textbf{Assurance:} confianza en que el sistema hace cumplir la política.
+        \item \textbf{Evaluación:} examen y pruebas frente a criterios definidos. :contentReference[oaicite:15]{index=15}
+    \end{itemize}
+
+    \section{Organismos y normas}
+    \begin{itemize}
+        \item \textbf{NIST}, \textbf{ISOC/IETF}, \textbf{ITU-T}, \textbf{ISO}. Cobertura: buenas prácticas de gestión y arquitectura de controles. :contentReference[oaicite:16]{index=16}
+    \end{itemize}
+
+    \begin{VocabBox}
+        \textbf{Adversario:} agente con intención/capacidad de causar daño. \;
+        \textbf{Riesgo:} función de impacto y probabilidad. \;
+        \textbf{Política de seguridad:} criterios que regulan servicios y comportamientos. \;
+        \textbf{Activo:} recurso valioso (sistema, datos, personal, instalaciones). \;
+        \textbf{Amenaza:} evento con potencial daño. \;
+        \textbf{Vulnerabilidad:} debilidad explotable. :contentReference[oaicite:17]{index=17}
+    \end{VocabBox}
+
+    \begin{ResumenBox}
+        Seguridad protege \textbf{CIA} frente a amenazas que explotan vulnerabilidades en activos.
+        Los ataques pueden ser pasivos/activos y generar divulgación, engaño, disrupción o usurpación.
+        Se mitigan con contramedidas y un marco de requisitos (FIPS~200) y principios de diseño.
+        La \textit{superficie de ataque} guía la \textit{defensa en profundidad}; los árboles de ataque ayudan a analizar objetivos.
+        La estrategia combina política, implementación, \textit{assurance} y evaluación, alineada con estándares NIST/ISOC/ITU/ISO. :contentReference[oaicite:18]{index=18}
+    \end{ResumenBox}
+
+\end{document}
