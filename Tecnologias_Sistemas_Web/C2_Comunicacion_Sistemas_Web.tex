@@ -1,0 +1,222 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---- Idioma y tipografía
+\usepackage[spanish, es-noquoting, es-noshorthands]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % eliminar si usas XeLaTeX/LuaLaTeX
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---- Márgenes y diseño
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{parskip}
+
+% ---- Enlaces
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+
+% ---- Cabeceras y pies
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\asignatura}}
+\chead{\textbf{\tema}}
+\rhead{\clase\;|\; \fecha}
+\cfoot{\thepage}
+
+% ---- Listas y símbolos
+\usepackage{enumitem}
+\setlist{itemsep=0.3em, topsep=0.5em}
+
+% ---- Iconos y color
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% ---- Colores propios
+\definecolor{uniPrimary}{HTML}{0A7AC3}
+\definecolor{uniSoft}{HTML}{E9F4FB}
+\definecolor{uniAccent}{HTML}{F5B700}
+\definecolor{uniOK}{HTML}{2E7D32}
+\definecolor{uniWarn}{HTML}{C62828}
+
+% ---- Metadatos reutilizables
+\newcommand{\asignatura}{Desarrollo y Sistemas Web}
+\newcommand{\tema}{Capítulo 2 — Comunicación entre Sistemas Web}
+\newcommand{\clase}{Clase 2}
+\newcommand{\fecha}{\today}
+
+% ---- Estética de secciones
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uniPrimary}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{0.5em}{}
+
+% ---- Cajas reutilizables
+\tcbset{
+    commonstyle/.style={
+        enhanced, breakable,
+        left=8pt,right=8pt,top=8pt,bottom=8pt,
+        boxrule=0.8pt,
+        fonttitle=\bfseries
+    }
+}
+
+\newtcolorbox{ObjetivosBox}[1][]{
+    commonstyle,
+    title={\faBullseye\; Índice},
+    colback=uniSoft, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{DefBox}[1][]{
+    commonstyle,
+    title={\faBook\; Definición},
+    colback=white, colframe=uniAccent,#1
+}
+
+\newtcolorbox{NotaBox}[1][]{
+    commonstyle,
+    title={\faStickyNote\; Nota},
+    colback=white, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{RecordatorioBox}[1][]{
+    commonstyle,
+    title={\faBell\; Recordatorio},
+    colback=uniAccent!15, colframe=uniAccent,#1
+}
+
+\newtcolorbox{ChecklistBox}[1][]{
+    commonstyle,
+    title={\faTasks\; Tareas / Checklist},
+    colback=white, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{ResumenBox}[1][]{
+    commonstyle,
+    title={\faHighlighter\; Resumen rápido (5 líneas)},
+    colback=uniSoft, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{VocabBox}[1][]{
+    commonstyle,
+    title={\faLanguage\; Vocabulario clave},
+    colback=white, colframe=uniPrimary,#1
+}
+
+% =========================================================
+\begin{document}
+
+    % ---- Cabecera de ficha de clase
+    {\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill \textit{\clase, \fecha}}\\[0.6em]
+    \faUser\; Alumno/a: Alberto Díaz \hfill
+    \faChalkboardTeacher\; Profesor/a: Ana Fernández
+
+    \vspace{1em}
+    \tableofcontents
+    \vspace{1em}
+
+    \begin{ObjetivosBox}
+        \begin{itemize}
+            \item Comprender el modelo cliente-servidor en la web.
+            \item Definir los conceptos de socket, puerto y protocolo.
+            \item Explicar el flujo básico de comunicación HTTP.
+            \item Diferenciar entre cliente y servidor web.
+        \end{itemize}
+    \end{ObjetivosBox}
+
+    \section{Introducción}
+    La comunicación entre sistemas web es fundamental para el funcionamiento de Internet. En este capítulo se estudian los conceptos y tecnologías que permiten la interacción entre clientes y servidores a través de la red.
+
+    \section{Modelo Cliente-Servidor}
+    \begin{DefBox}
+        \textbf{Cliente:} Programa o dispositivo que inicia la comunicación solicitando recursos o servicios a un servidor.
+
+        \textbf{Servidor:} Programa o dispositivo que espera y responde a las peticiones de los clientes, proporcionando los recursos o servicios solicitados.
+    \end{DefBox}
+
+    \subsection{Sockets y Puertos}
+    \begin{DefBox}
+        \textbf{Socket:} Abstracción software que permite la comunicación entre dos sistemas a través de la red. Se identifica por una tupla (IP, Puerto).
+
+        \textbf{Puerto:} Número lógico que identifica un servicio específico en una máquina.
+    \end{DefBox}
+
+    \subsection{Protocolo HTTP}
+    HTTP (HyperText Transfer Protocol) es el protocolo principal de comunicación en la web. Define cómo los clientes (navegadores) y servidores intercambian mensajes.
+
+    Un mensaje HTTP está compuesto por varias partes, principalmente:
+
+    \begin{itemize}
+        \item \textbf{Línea de inicio:} Indica si es una petición (por ejemplo, \texttt{GET /index.html HTTP/1.1}) o una respuesta (por ejemplo, \texttt{HTTP/1.1 200 OK}).
+        \item \textbf{Cabeceras (headers):} Proporcionan información adicional sobre la petición o respuesta, como el tipo de contenido (\texttt{Content-Type: application/json}, \texttt{text/html}, \texttt{application/xml}, etc.), longitud, codificación, agente de usuario, etc.
+        \item \textbf{Cuerpo (body):} Contiene los datos enviados (por ejemplo, el contenido de un formulario o la respuesta en HTML/JSON). No siempre está presente.
+    \end{itemize}
+
+    Ejemplo de mensaje html:
+    \begin{verbatim}
+    GET /index.html HTTP/1.1
+    Host: www.ejemplo.com
+    User-Agent: Mozilla/5.0
+    Accept: text/html
+    \end{verbatim}
+
+    \subsection{Métodos HTTP principales}
+
+    Los métodos HTTP definen la acción a realizar sobre un recurso:
+
+    \begin{itemize}
+        \item \textbf{GET:} Solicita datos (lectura).
+        \item \textbf{POST:} Envía datos (creación).
+        \item \textbf{PUT:} Reemplaza un recurso.
+        \item \textbf{DELETE:} Elimina un recurso.
+        \item \textbf{HEAD/OPTIONS:} Información sobre el recurso o el servidor.
+    \end{itemize}
+
+    \begin{VocabBox}
+        \begin{itemize}
+            \item \textbf{Petición HTTP:} Mensaje enviado por el cliente solicitando un recurso.
+            \item \textbf{Respuesta HTTP:} Mensaje enviado por el servidor con el recurso solicitado o un error.
+            \item \textbf{Métodos HTTP:} GET, POST, PUT, DELETE, etc.
+        \end{itemize}
+    \end{VocabBox}
+
+    \section{Flujo de Comunicación Web}
+    \begin{enumerate}
+        \item El cliente inicia la comunicación abriendo una conexión con el servidor (socket).
+        \item El cliente envía una petición HTTP.
+        \item El servidor procesa la petición y envía una respuesta HTTP.
+        \item El cliente recibe la respuesta y, si es una página web, la renderiza.
+    \end{enumerate}
+
+    Cuando accedes a una URL desde tu navegador, el cliente envía una petición HTTP de tipo \texttt{GET} al servidor correspondiente. El servidor procesa la solicitud y responde con un código de estado (por ejemplo, 200 si la petición fue exitosa, 404 si el recurso no existe, etc.) y, normalmente, con un contenido asociado, que suele ser una página HTML.
+
+    \medskip
+    Los códigos de estado HTTP más comunes son:
+    \begin{itemize}
+        \item \textbf{1xx:} Información (p. ej., 100 Continue)
+        \item \textbf{2xx:} Éxito (p. ej., 200 OK)
+        \item \textbf{3xx:} Redirección (p. ej., 301 Moved Permanently)
+        \item \textbf{4xx:} Error del cliente (p. ej., 404 Not Found)
+        \item \textbf{5xx:} Error del servidor (p. ej., 500 Internal Server Error)
+    \end{itemize}
+
+    \begin{NotaBox}
+        Los códigos de estado correctos comienzan con 2xx; los errores del cliente con 4xx y los errores del servidor con 5xx.
+        El servidor suele estar siempre disponible, escuchando en un puerto específico (por ejemplo, 80 para HTTP o 443 para HTTPS).
+    \end{NotaBox}
+
+    \section{Diferencias entre Cliente y Servidor Web}
+    \begin{itemize}
+        \item El cliente tiene interfaz gráfica (navegador web); el servidor normalmente no.
+        \item El cliente inicia la comunicación; el servidor responde.
+        \item El servidor puede atender múltiples clientes simultáneamente.
+    \end{itemize}
+
+    \begin{ResumenBox}
+        El modelo cliente-servidor es la base de la comunicación web. Los clientes solicitan recursos a los servidores mediante protocolos como HTTP, utilizando sockets y puertos para establecer la conexión. El servidor responde a las peticiones, permitiendo la interacción y visualización de páginas web.
+    \end{ResumenBox}
+
+\end{document}
