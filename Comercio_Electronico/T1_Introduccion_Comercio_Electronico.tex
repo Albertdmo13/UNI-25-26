@@ -1,0 +1,222 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---- Idioma y tipografía
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}  % (si usas XeLaTeX/LuaLaTeX, elimínala)
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---- Márgenes y diseño
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{parskip}
+
+% ---- Enlaces
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+% ---- Cabeceras y pies
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\cfoot{\thepage}
+
+% ---- Listas y símbolos
+\usepackage{enumitem}
+\setlist{itemsep=0.25em, topsep=0.3em}
+
+% ---- Iconos y color
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% ---- Colores propios
+\definecolor{uniPrimary}{HTML}{0A7AC3}
+\definecolor{uniSoft}{HTML}{E9F4FB}
+\definecolor{uniAccent}{HTML}{F5B700}
+\definecolor{uniOK}{HTML}{2E7D32}
+\definecolor{uniWarn}{HTML}{C62828}
+
+% ---- Metadatos reutilizables
+\newcommand{\asignatura}{Comercio Electrónico}
+\newcommand{\tema}{TEMA 1 — Introducción al Comercio Electrónico}  % <-- cambia el título del tema aquí
+\newcommand{\clase}{Clase 1}
+\newcommand{\fecha}{\today}                              % <-- pon la fecha de la clase
+
+% ---- Cabecera con metadatos
+\lhead{\textsc{\asignatura}}
+\chead{\textbf{\tema}}
+\rhead{\clase\;|\; \fecha}
+
+% ---- Estética de secciones
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uniPrimary}}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{0.5em}{}
+
+% ---- Cajas útiles
+\newtcolorbox{ObjetivosBox}{
+	title={\faBullseye\; Índice},
+	colback=uniSoft,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{DefBox}{
+	title={\faBook\; Definición},
+	colback=white,
+	colframe=uniAccent,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{NotaBox}{
+	title={\faStickyNote\; Nota},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{RecordatorioBox}{
+	title={\faBell\; Recordatorio},
+	colback=uniAccent!15,
+	colframe=uniAccent,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{ChecklistBox}{
+	title={\faTasks\; Tareas / Checklist},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{ResumenBox}{
+	title={\faHighlighter\; Resumen rápido (5 líneas)},
+	colback=uniSoft,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{VocabBox}{
+	title={\faLanguage\; Vocabulario clave},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+% ---- Tabla estilo evaluación (por si la necesitas hoy)
+\newcommand{\TablaEvaluacion}{
+	\begin{center}
+		\renewcommand{\arraystretch}{1.3}
+		\begin{tabular}{|l|c|c|c|}
+			\hline
+			\textbf{Criterio} & \textbf{Porcentaje} & \textbf{Obligatorio} & \textbf{Recuperable} \\
+			\hline
+			Teoría (25\% cada parcial) & 50\% & Sí & Sí \\
+			Práctica & 25\% & Sí & Sí \\
+			Aprovechamiento en clase & 10\% & No & No \\
+			Trabajo teórico & 15\% & No & Sí \\
+			\hline
+			\textbf{Total} & \textbf{100\%} &  &  \\
+			\hline
+		\end{tabular}
+	\end{center}
+}
+
+% =========================================================
+\begin{document}
+
+	% ---- Cabecera de ficha de clase (rellenable en cada sesión)
+		{\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill \textit{\clase, \fecha}}\\[0.4em]
+		\faUser\; Alumno/a: Alberto Díaz\hfill
+		\faChalkboardTeacher\; Vanesa Herrera Tirado\hfill
+
+		\vspace{0.6em}
+
+		\tableofcontents
+
+		\section{La revolución de la industria y la Industria 4.0}
+
+		\begin{ResumenBox}
+		La Industria 4.0 representa la cuarta revolución industrial, caracterizada por la integración de tecnologías digitales avanzadas en los procesos productivos. Factores como el IIoT, la realidad extendida, la simulación, los gemelos digitales, la robótica autónoma y colaborativa, el big data y el cloud computing han sido habilitadores clave de esta transformación.
+		\end{ResumenBox}
+
+		\subsection{Evolución de la industria}
+		La industria ha experimentado varias revoluciones:
+		\begin{itemize}
+			\item \textbf{Primera revolución industrial}: mecanización y uso del vapor.
+			\item \textbf{Segunda revolución industrial}: producción en masa y electricidad.
+			\item \textbf{Tercera revolución industrial}: automatización y electrónica.
+			\item \textbf{Cuarta revolución industrial (Industria 4.0)}: digitalización, conectividad y sistemas inteligentes.
+		\end{itemize}
+
+		\subsection{Factores habilitadores de la Industria 4.0}
+		\begin{itemize}
+			\item \textbf{IIoT (Industrial Internet of Things)}: Conexión de máquinas, sensores y sistemas para recopilar y analizar datos en tiempo real.
+			\item \textbf{Realidad extendida (XR)}: Uso de realidad aumentada y virtual para formación, mantenimiento y diseño.
+			\item \textbf{Simulación y gemelos digitales}: Modelado virtual de procesos y productos para optimizar y predecir comportamientos.
+			\item \textbf{Robótica autónoma y colaborativa}: Robots que trabajan de forma independiente o junto a humanos, aumentando la flexibilidad y eficiencia.
+			\item \textbf{Big Data}: Análisis de grandes volúmenes de datos para mejorar la toma de decisiones y la personalización.
+			\item \textbf{Cloud Computing}: Almacenamiento y procesamiento de datos en la nube, facilitando el acceso y la escalabilidad.
+		\end{itemize}
+
+		\begin{NotaBox}
+		La combinación de estos factores permite una producción más flexible, eficiente y personalizada, así como nuevos modelos de negocio y servicios.
+		\end{NotaBox}
+
+		\section{Digitalización vs Transformación digital}
+
+		\begin{ResumenBox}
+		La digitalización convierte procesos analógicos o físicos en digitales. La transformación digital va más allá: implica rediseñar procesos y modelos de negocio usando tecnología para crear valor y ventajas competitivas, cambio estratégico, cambio a nivel global.
+		\end{ResumenBox}
+
+		\begin{NotaBox}
+		La digitalización no modifica el modelo de negocio ni la experiencia del usuario; simplemente traslada procesos existentes al entorno digital sin transformarlos en profundidad.
+		\end{NotaBox}
+
+		\subsection{Ventajas de la transformación digital}
+
+		\begin{ChecklistBox}
+		\begin{itemize}
+			\item \textbf{Captación de nuevos clientes}: Permite acceder a mercados más amplios y atraer públicos que antes no eran alcanzables.
+			\item \textbf{Ventaja competitiva}: Facilita la diferenciación frente a la competencia mediante innovación y agilidad.
+			\item \textbf{Mejora de la eficiencia}: Automatiza procesos, reduce errores y optimiza recursos, lo que disminuye costes y tiempos.
+			\item \textbf{Alcance global}: Elimina barreras geográficas, permitiendo operar y ofrecer servicios a nivel internacional.
+			\item \textbf{Adaptabilidad}: Favorece la capacidad de respuesta ante cambios del mercado y nuevas tendencias tecnológicas.
+		\end{itemize}
+		\end{ChecklistBox}
+
+		\subsection{Inconvenientes y retos de la transformación digital}
+
+		\begin{ChecklistBox}
+		\begin{itemize}
+			\item \textbf{Inversión significativa}: Requiere recursos económicos y humanos para implementar nuevas tecnologías y capacitar al personal.
+			\item \textbf{Brecha digital}: No todos los empleados o clientes tienen el mismo acceso o habilidades tecnológicas, lo que puede generar desigualdades.
+			\item \textbf{Complejidad tecnológica}: Integrar sistemas y procesos digitales puede ser complejo y requerir una gestión del cambio adecuada.
+			\item \textbf{Impacto laboral}: La automatización y digitalización pueden provocar la desaparición de ciertos puestos de trabajo y la necesidad de reconversión profesional.
+		\end{itemize}
+		\end{ChecklistBox}
+
+\end{document}
