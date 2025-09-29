@@ -622,6 +622,119 @@ Estéreo alta resolución & 96  & 24 & 4{,}608 \\
 \caption{Bitrates PCM sin compresión típicos (aprox.).}
 \end{table}
 
+\section{Redundancias en la señal}
+
+\begin{DefBox}
+\textbf{Redundancia espacial:} Dentro de una imagen una sección puede contener píxeles iguales o similares, por lo que, si codificamos cada píxel de igual manera, estaríamos enviando información redundada.
+\end{DefBox}
+
+\begin{DefBox}
+\textbf{Redundancia temporal:} En el vídeo, fotogramas consecutivos pueden presentar gran similitud; hay información repetida a lo largo de los fotogramas.
+\end{DefBox}
+
+\begin{DefBox}
+\textbf{Redundancia:} Presencia de información repetida o predecible en los datos que puede ser eliminada (sin o con mínima pérdida perceptual) para reducir la tasa binaria sin afectar significativamente la calidad percibida.
+\end{DefBox}
+
+\begin{NotaBox}
+Nota, parte de la información de la señal es irrelevante desde el punto de vista perceptivo. Por ejemplo, ciertos cambios de tonalidades entre ciertos colores son casi imperceptibles al ojo humano. En las imagenes borrosas los detalles son imperceptibles por lo que no es necesario enviar una gran cantidad de información para generar la misma percepción
+\end{NotaBox}
+
+\subsection{Sistemas de Compresión}
+
+\begin{DefBox}
+Sistema de compresión CODE, consta de codificador y decodificador, EnCOder y DECoder.
+\end{DefBox}
+
+\textbf{Tipos:}
+\begin{itemize}
+	\item Asimétricos, el codificador tarda mucho en codificar y poco en descodificar.
+	\item Simétricos, Coste computacional similar.
+	\item Con pérdidas o irreversible; mayores tasas de compresión, Video e Imagenes, JPEG, MPEG.
+	\item Sin pérdidas o reversible. Tasas de compresión moderadas. Texto, ZIP
+\end{itemize}
+
+\subsection{Sistemas genéricos de compresión}
+\begin{itemize}
+	\item \textbf{Análisis:} Representación eficaz que facilita la compresión.
+	\item \textbf{Cuantificador:} Conversión a valores discretos.
+	\item \textbf{Asignación de palabras de código:} Series de bits utilizados para representar los niveles de cuantificación.
+\end{itemize}
+
+Este es el proceso de codificación. La decodificación es el mismo proceso pero a la inversa.
+
+\section{Tipos de datos multimedia}
+
+\begin{NotaBox}
+Habitualmente se asocia con los datos de audio video e image, pero también se puede considerar texto o gráficos.
+
+Los datos multimedia pueden ser \textbf{continuos} o \textbf{estáticos}.
+
+Las aplicaciones multimedia basadas en datos continuos representan mayores retos y requerimientos, retardos, sincronismo, etc...
+\end{NotaBox}
+
+\subsection {Gráficos}
+\begin{DefBox}
+\textbf{Gráficos vectoriales:} Representación basada en \textbf{primitivas geométricas} (puntos, líneas, curvas, polígonos) definidas mediante coordenadas y fórmulas matemáticas. \\
+\textbf{Características principales:}
+\begin{itemize}[leftmargin=1.3em]
+	\item Independientes de la resolución (reescalado sin pérdida de calidad).
+	\item Ficheros ligeros para formas simples.
+	\item Ideales para: logotipos, tipografía, iconos, diagramas, ilustración técnica.
+	\item Formatos habituales: SVG, PDF, EPS, AI.
+\end{itemize}
+\end{DefBox}
+
+\begin{DefBox}
+\textbf{Gráficos raster (mapa de bits):} Representación mediante una rejilla (matriz) de píxeles, cada uno con un valor de color. \\
+\textbf{Características principales:}
+\begin{itemize}[leftmargin=1.3em]
+	\item Dependientes de la resolución (al ampliar se percibe pixelación / pérdida aparente de calidad).
+	\item Adecuados para: fotografías, texturas, arte complejo con variaciones tonales.
+	\item Tamaño del fichero crece con la resolución y profundidad de color.
+	\item Formatos habituales: PNG, JPEG, BMP, GIF, TIFF.
+\end{itemize}
+\end{DefBox}
+
+\begin{ResumenBox}
+Vector: objetos geométricos, escalable, ideal para diseño limpio. \\
+Raster: píxeles, depende de la resolución, ideal para fotografía. \\
+La elección depende de: tipo de contenido, necesidad de escalado y optimización.
+\end{ResumenBox}
+
+% (Opcional) Comparativa rápida
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{|l|c|c|}
+\hline
+\textbf{Aspecto} & \textbf{Vector} & \textbf{Raster} \\
+\hline
+Escalado & Perfecto & Pierde nitidez \\
+Detalle fotográfico & Limitado & Excelente \\
+Edición de formas & Muy precisa & Limitada \\
+Tamaño (formas simples) & Muy reducido & Mayor \\
+Uso típico & Logo / Iconos & Fotografía \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Texto}
+
+\begin{DefBox}
+\textbf{Texto digital:} Secuencia de \emph{puntos de código} (code points) pertenecientes a un \textbf{repertorio} (conjunto abstracto de caracteres) que se materializa mediante una \textbf{codificación} (mapping a bytes). El mismo carácter puede representarse con distinto número de bytes según el estándar.
+\end{DefBox}
+
+\subsubsection*{Evolución de codificaciones}
+\begin{itemize}[leftmargin=1.4em]
+	\item \textbf{ASCII (7 bits, 1963)}: 128 símbolos (0–127). Letras inglesas, dígitos, control.
+	\item \textbf{ASCII extendido (8 bits)}: 256 posiciones (0–255). No estandarizado globalmente: distintas páginas de códigos (Latin-1, CP1252, ISO-8859-x, etc.).
+	\item \textbf{Unicode (ISO/IEC 10646)}: Repertorio universal (más de 149k caracteres). Asigna un \emph{code point} U+XXXX.
+	\item \textbf{UTF-8}: Codificación de Unicode de longitud variable (1–4 bytes). Retrocompatible con ASCII (0x00–0x7F).
+	\item \textbf{UTF-16}: 16 bits.
+	\item \textbf{UTF-32}: 32 bits.
+\end{itemize}
+
+También se pueden codificar las palabras con otros sistemas como EBCDIC (IBM) o GB18030 (chino).
 
 \section{Resumen rápido}
 
