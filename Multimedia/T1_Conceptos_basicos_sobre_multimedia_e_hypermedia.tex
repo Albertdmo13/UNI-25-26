@@ -736,6 +736,102 @@ Uso típico & Logo / Iconos & Fotografía \\
 
 También se pueden codificar las palabras con otros sistemas como EBCDIC (IBM) o GB18030 (chino).
 
+\subsection{Audio}
+
+\begin{DefBox}
+\textbf{Audio:} Onda acústica (variación de presión en un medio, típicamente aire) que se modela como señal \textbf{unidimensional} en el tiempo. Un \textbf{transductor} (micrófono) convierte estas variaciones en señal eléctrica que luego se digitaliza (muestreo, cuantificación y codificación). El oído humano percibe frecuencias aproximadamente entre \textbf{20 Hz} y \textbf{20 kHz}.
+\end{DefBox}
+
+\begin{NotaBox}
+La señal puede captarse en \textbf{mono} (un canal) o en \textbf{estéreo} (dos canales sincronizados).
+\end{NotaBox}
+
+\subsubsection*{Ejemplo: Telefonía digital (PCM)}
+\begin{DefBox}
+La voz telefónica se limita (filtra) aproximadamente al rango 200--3200 Hz para reducir ancho de banda y evitar componentes innecesarias. Según Nyquist, la frecuencia de muestreo debe ser mayor al doble de la frecuencia máxima: $F_s > 2 \times 3200 = 6400$ Hz. Se estandariza $F_s = 8000$ Hz.
+\end{DefBox}
+
+\begin{NotaBox}
+Bitrate (tasa binaria) PCM sin compresión (mono):
+\[
+R = F_s \times N = 8000\ \text{muestras/s} \times 8\ \text{bits/muestra} = 64{,}000\ \text{bits/s} = 64\ \text{kbit/s}
+\]
+Este es el caudal básico de la telefonía digital tradicional (PCM G.711 antes de compresión adicional).
+\end{NotaBox}
+
+\begin{ChecklistBox}
+\begin{itemize}
+	\item Banda voz (filtrada): 200--3200 Hz
+	\item Frecuencia Nyquist mínima: > 6400 Hz
+	\item Frecuencia usada: 8000 Hz
+	\item Profundidad de cuantificación: 8 bits
+	\item Bitrate resultante: 64 kbit/s (PCM lineal teórico)
+\end{itemize}
+\end{ChecklistBox}
+
+\begin{ResumenBox}
+Filtrar la voz reduce el ancho de banda requerido. Muestrear a 8 kHz y cuantificar a 8 bits produce 64 kbit/s, base de la telefonía digital clásica.
+\end{ResumenBox}
+
+\subsection{Imagenes}
+
+Con imágenes nos referimos a \textit{mapas de bits rasterizados} representados mediante matrices de píxeles.
+Cada píxel puede tener un distinto número de canales, por ejemplo:
+\begin{itemize}
+    \item \textbf{Monocromáticas:} 1 canal (imágenes en blanco y negro).
+    \item \textbf{Imágenes a color:} 3 canales (RGB o HSV).
+\end{itemize}
+
+Las imágenes pueden estar en gran cantidad de formatos que utilizan distintos modelos de color, tales como:
+\[
+\text{RGB, HSV, CMYK, YUV}
+\]
+
+\subsection{Video}
+
+Se trata de una \textbf{secuencia de imágenes}, donde las frecuencias más comunes son:
+
+\[
+24 \ \text{fps}, \quad 30 \ \text{fps}, \quad 60 \ \text{fps}
+\]
+
+Esta frecuencia garantiza la \textit{percepción visual} y proporciona una sensación de \textbf{continuidad}.
+
+\section{Características de las señales multimedia}
+\subsection{Audio}
+La magnitud en decibelios (dB) se define como:
+
+\[
+\text{dB} = 20 \cdot \log_{10}\!\left(\frac{A}{B}\right)
+\]
+
+donde $A$ es la amplitud medida y $B$ es la amplitud de referencia.
+
+\begin{itemize}
+    \item $0 \,\text{dB}$: umbral mínimo de audición.
+    \item $120 \,\text{dB}$: umbral del dolor.
+\end{itemize}
+
+\subsection*{Voz vs Música}
+
+\textbf{Voz}
+\begin{itemize}
+    \item Servicios de tecnología telefónica.
+    \item Estándar \textbf{G.711}.
+    \item Codificación logarítmica (\textit{µ-law} y \textit{A-law}).
+    \item Parámetros:
+    \begin{itemize}
+        \item Ancho de banda: $3.5 \,\text{KHz}$.
+        \item Tasa de bits: $64 \,\text{Kbps}$.
+    \end{itemize}
+\end{itemize}
+
+\textbf{Música}
+\begin{itemize}
+    \item Calidad de audio superior.
+    \item Codificación lineal.
+\end{itemize}
+
 \section{Resumen rápido}
 
 \begin{ResumenBox}
