@@ -1,5 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 
+\usepackage{graphicx}
+
 % ---- Idioma y tipografía
 \usepackage[spanish]{babel}
 \usepackage[T1]{fontenc}
@@ -149,7 +151,7 @@
 \begin{document}
 
 	% ---- Cabecera de ficha de clase (rellenable en cada sesión)
-	{\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill \textit{\clase, \fecha}}\\[0.4em]
+	{\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill \textit{\clase, \fecha}}\\begin{equation*}0.4em]
 	\faUser\; Alumno/a: Alberto Díaz\hfill
 	\faChalkboardTeacher\; Profesor/a: Ana Fernández
 
@@ -453,7 +455,7 @@ Para poder reconstruir una señal analógica a partir de sus muestras digitales,
 
 \[
 F_m > 2B
-\]
+\end{equation*}
 
 Esto garantiza una representación digital adecuada y evita pérdidas de información.
 \end{DefBox}
@@ -495,13 +497,13 @@ De esta forma, los valores de la señal se representan con un número finito de 
 \begin{itemize}
   \item La cuantificación convierte una secuencia de muestras continuas en un conjunto finito de valores discretos.
   \item El número de niveles de cuantificación $N$ depende del número de bits $b$ utilizados:
-  \[
+  \begin{equation*}
   N = 2^b
-  \]
+  \end{equation*}
   \item Cada muestra tiene un \textbf{error de cuantificación}:
-  \[
+  \begin{equation*}
   e(T) = x_{\text{analógica}}(T) - x_{\text{cuantificada}}(T)
-  \]
+  \end{equation*}
   Cuantos más bits se usan, menor es el error, pero mayor el espacio necesario para almacenamiento o transmisión.
 \end{itemize}
 
@@ -519,9 +521,9 @@ De esta forma, los valores de la señal se representan con un número finito de 
 \subsubsection*{Ejemplo}
 \begin{itemize}
   \item Para un cuantificador de 2 bits ($b=2$):
-  \[
+  \begin{equation*}
   N = 2^2 = 4 \text{ niveles discretos}
-  \]
+  \end{equation*}
   La señal se aproxima solo a 4 valores posibles, lo que genera un error de cuantificación alto.
   \item Si se usan 8 bits, se obtienen $2^8 = 256$ niveles, con una representación mucho más fiel.
 \end{itemize}
@@ -753,9 +755,9 @@ La voz telefónica se limita (filtra) aproximadamente al rango 200--3200 Hz para
 
 \begin{NotaBox}
 Bitrate (tasa binaria) PCM sin compresión (mono):
-\[
+\begin{equation*}
 R = F_s \times N = 8000\ \text{muestras/s} \times 8\ \text{bits/muestra} = 64{,}000\ \text{bits/s} = 64\ \text{kbit/s}
-\]
+\end{equation*}
 Este es el caudal básico de la telefonía digital tradicional (PCM G.711 antes de compresión adicional).
 \end{NotaBox}
 
@@ -783,27 +785,26 @@ Cada píxel puede tener un distinto número de canales, por ejemplo:
 \end{itemize}
 
 Las imágenes pueden estar en gran cantidad de formatos que utilizan distintos modelos de color, tales como:
-\[
+\begin{equation*}
 \text{RGB, HSV, CMYK, YUV}
-\]
+\end{equation*}
 
 \subsection{Video}
 
 Se trata de una \textbf{secuencia de imágenes}, donde las frecuencias más comunes son:
 
-\[
+\begin{equation*}
 24 \ \text{fps}, \quad 30 \ \text{fps}, \quad 60 \ \text{fps}
-\]
+\end{equation*}
 
 Esta frecuencia garantiza la \textit{percepción visual} y proporciona una sensación de \textbf{continuidad}.
 
-\section{Características de las señales multimedia}
-\subsection{Audio}
+\section{Audio}
 La magnitud en decibelios (dB) se define como:
 
-\[
+\begin{equation*}
 \text{dB} = 20 \cdot \log_{10}\!\left(\frac{A}{B}\right)
-\]
+\end{equation*}
 
 donde $A$ es la amplitud medida y $B$ es la amplitud de referencia.
 
@@ -832,10 +833,118 @@ donde $A$ es la amplitud medida y $B$ es la amplitud de referencia.
     \item Codificación lineal.
 \end{itemize}
 
-\section{Resumen rápido}
+\section{Video}
 
-\begin{ResumenBox}
-Los servicios multimedia pueden ser unidireccionales o bidireccionales, en tiempo real o bajo demanda. Su calidad, retraso y modelo de producción varían según el tipo de servicio: desde la difusión masiva centralizada (broadcasting) hasta la compartición descentralizada en redes sociales (monocasting compartido).
-\end{ResumenBox}
+\subsection{Vídeo análogo}
+
+Es una sucesión de imágenes que producen la sensación de movimiento. La imagen está compuesta de ondas electromagnéticas; diferentes longitudes de onda producen diferentes sensaciones de color.
+
+\begin{itemize}
+	\item Las imágenes son convertidas en una señal analógica en intervalos de tiempo regulares.
+	\item Para reproducir la imagen se realiza el proceso inverso.
+	\item Parámetros de barrido:
+		\begin{itemize}
+			\item Relación de aspecto: 4:3, 16:9 (ancho:alto).
+			\item Algunas líneas, superiores e inferiores, no se ven.
+			\item Estándares: NTSC (525 líneas), PAL (625 líneas).
+			\item Frecuencia de refresco: 50 Hz (PAL), 60 Hz (NTSC).
+		\end{itemize}
+	\item Parpadeo de imagen (\textit{flicker}):
+		\begin{itemize}
+			\item Se produce por la baja frecuencia de refresco.
+			\item Se soluciona con el barrido entrelazado: primero líneas pares y luego impares.
+		\end{itemize}
+\end{itemize}
+
+\subsection{Vídeo digital}
+
+\begin{itemize}
+	\item Parámetros de barrido:
+	\begin{itemize}
+		\item Dos formatos: NTSC y PAL.
+		\item Resolución: 720$\times$480 (NTSC), 525$\times$825 (PAL).
+		\item Frecuencia de refresco: 50 Hz (PAL), 60 Hz (NTSC).
+	\end{itemize}
+\end{itemize}
+
+\subsection{Formatos de color}
+
+El formato \textbf{RGB} parte de la idea de que cualquier color puede ser representado por una combinación de los colores primarios: rojo, verde y azul.
+En la representación digital, cada color primario se cuantifica en un número determinado de bits, normalmente 8 bits, es decir, 24 bits por píxel.
+
+El formato \textbf{YUV} se compone de:
+\begin{itemize}
+    \item $Y$: Luminancia
+    \item $U$: Componente azul
+    \item $V$: Componente rojo
+\end{itemize}
+
+La conversión entre RGB y YUV se expresa mediante la siguiente matriz de transformación:
+
+\begin{equation}
+\begin{bmatrix}
+Y \\[6pt]
+U \\[6pt]
+V
+\end{bmatrix}
+=
+\begin{bmatrix}
+0.299 & 0.587   & 0.114 \\
+-0.14713 & -0.28886 & 0.436 \\
+0.615 & -0.51499 & -0.10001
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+R \\[6pt]
+G \\[6pt]
+B
+\end{bmatrix}
+\end{equation}
+
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.5\textwidth]{resources/YUV_UV_plane.png}
+    \caption{Plano UV del modelo de color YUV}
+    \label{fig:yuv_uv_plane}
+\end{figure}
+
+\subsection{Video entrelazado (i) y progresivo (p)}
+
+\textbf{Entrelazado}
+\begin{itemize}
+    \item Se escanean las líneas impares y luego las pares.
+    \item Es más eficiente en movimientos rápidos entre \textit{frames}.
+    \item Las líneas espacialmente adyacentes no lo son temporalmente.
+\end{itemize}
+
+\textbf{Progresivo}
+\begin{itemize}
+    \item No existe el concepto de \textit{frame}, se envía todo de forma progresiva.
+    \item Se necesita más caudal de datos para la misma calidad.
+    \item Se ve mejor el movimiento, pero puede aparecer \textit{tearing}.
+\end{itemize}
+
+\section{Técnicas y métricas de calidad visual}
+
+Existen tres tipos:
+\begin{itemize}
+    \item \textbf{Full reference}: se tiene la imagen original y se compara con la distorsionada.
+    \item \textbf{No reference}: no se dispone de la imagen original, solo de la distorsionada.
+    \item \textbf{Reduced reference}: se conocen algunas propiedades de la señal original.
+\end{itemize}
+
+Las métricas \textbf{full reference} más comunes son:
+\begin{itemize}
+    \item Error cuadrático medio (MSE, \textit{Mean Square Error}).
+    \item Relación señal a ruido (SNR, \textit{Signal to Noise Ratio}).
+    \item Relación señal a ruido pico (PSNR, \textit{Peak Signal to Noise Ratio}).
+\end{itemize}
+
+\subsection{Métricas subjetivas}
+
+Estas métricas no se ajustan a la calidad subjetiva observada por el ojo humano.
+
+La métrica subjetiva más utilizada es el \textbf{MOS} (\textit{Mean Opinion Score}).
+
 
 \end{document}
