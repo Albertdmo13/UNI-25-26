@@ -48,8 +48,7 @@
 
 % ---- Cabecera con metadatos
 \lhead{\textsc{\asignatura}}
-\chead{\textbf{\tema}}
-\rhead{\clase\;|\; \fecha}
+\rhead{\textbf{\tema}}
 
 % ---- Estética de secciones
 \usepackage{titlesec}
@@ -151,7 +150,7 @@
 \begin{document}
 
 	% ---- Cabecera de ficha de clase (rellenable en cada sesión)
-	{\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill \textit{\clase, \fecha}}\\begin{equation*}0.4em]
+	{\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill}\\begin{equation*}0.4em]
 	\faUser\; Alumno/a: Alberto Díaz\hfill
 	\faChalkboardTeacher\; Profesor/a: Ana Fernández
 
@@ -946,5 +945,34 @@ Estas métricas no se ajustan a la calidad subjetiva observada por el ojo humano
 
 La métrica subjetiva más utilizada es el \textbf{MOS} (\textit{Mean Opinion Score}).
 
+\subsection{Métricas objetivas}
+
+\begin{itemize}
+    \item \textbf{Ratio de compresión (en porcentaje):}
+    \[
+        \text{RC\%} = \frac{\text{Tamaño comprimido}}{\text{Tamaño original}} \times 100 \%
+    \]
+
+    \item \textbf{Factor de compresión:}
+    \[
+        \text{FC} = \frac{\text{Tamaño original}}{\text{Tamaño comprimido}}
+    \]
+
+	Expresado como FC:1 (por ejemplo, 10:1).
+
+    \item \textbf{Bits por píxel (bpp):}
+    \[
+        \text{bpp} = \frac{\text{Número de bits de la imagen codificada}}{\text{Número de píxeles en la imagen original}}
+    \]
+\end{itemize}
+
+\subsection{Estándares internacionales}
+
+Organizaciones importantes:
+\begin{itemize}
+    \item ISO (\textit{International Organization for Standardization})
+    \item IEC (\textit{International Electrotechnical Commission})
+    \item ITU (\textit{International Telecommunication Union})
+\end{itemize}
 
 \end{document}
