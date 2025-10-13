@@ -47,6 +47,10 @@
 \newcommand{\clase}{Clase 2}
 \newcommand{\fecha}{\today}
 
+\usepackage{booktabs} % para tablas más bonitas
+\usepackage{siunitx}  % para alinear números y usar unidades correctamente
+\usepackage{amsmath}  % para fórmulas matemáticas
+
 % ---- Cabecera con metadatos
 \lhead{\textsc{\asignatura}}
 \rhead{\textbf{\tema}}
@@ -337,5 +341,150 @@ Si 2 sucesos $A$ y $B$ son independientes, la cantidad de información conjunta 
 \[
 I(A \cap B) = I(A) + I(B)
 \]
+
+\textbf{Ejemplo:}
+Sea un experimento con dos sucesos independientes, cada uno con probabilidad $P(A) = \frac{1}{2}$.
+La información asociada al suceso $A$ se calcula como:
+\[
+I(A) = -\log_2 P(A) = -\log_2 \left(\frac{1}{2}\right) = 1 \text{ bit.}
+\]
+
+\subsection*{Ejemplo: Cálculo de la información de una secuencia de mensajes}
+
+Dada la secuencia de mensajes:
+\[
+1, 2, 3, 2, 3, 4, 5, 4, 5, 6, 7, 8, 9, 8, 9, 10
+\]
+
+La \textbf{fórmula de la información} se define como:
+\[
+I(A) = -\log_2 P(A)
+\]
+
+\begin{table}[h!]
+\centering
+\caption{Cálculo de la información por mensaje}
+\begin{tabular}{cccc}
+\toprule
+\textbf{Mensaje} & \textbf{Apariciones} & \textbf{Probabilidad $P(A)$} & \textbf{Información $I(A)$ (bits)} \\
+\midrule
+1  & 1 & $\tfrac{1}{16}$ & 4 \\
+2  & 2 & $\tfrac{1}{8}$  & 3 \\
+3  & 2 & $\tfrac{1}{8}$  & 3 \\
+4  & 2 & $\tfrac{1}{8}$  & 3 \\
+5  & 2 & $\tfrac{1}{8}$  & 3 \\
+6  & 1 & $\tfrac{1}{16}$ & 4 \\
+7  & 1 & $\tfrac{1}{16}$ & 4 \\
+8  & 2 & $\tfrac{1}{8}$  & 3 \\
+9  & 2 & $\tfrac{1}{8}$  & 3 \\
+10 & 1 & $\tfrac{1}{16}$ & 4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La información de un conjunto de mensajes es la suma de las informaciones individuales:
+\[
+I(\text{secuencia}) = 4 + 3 + 3 + 3 + 3 + 4 + 4 + 3 + 3 + 4 = 34 \text{ bits}
+\]
+
+\subsection{Entropía de una fuente}
+
+Dada una fuente $(S, P)$, la \textbf{entropía} $H(S)$ se define como:
+\[
+H(S) = - \sum_{s \in S} P(s) \log_2 P(s)
+\]
+
+\begin{itemize}
+	\item La entropía es la mínima longitud promedio de bits por símbolo necesaria para codificar la fuente sin pérdidas.
+	\item El número medio de bits nunca será menor que la entropía.
+	\item Si la probabilidad de todos los símbolos es igual, la entropía es máxima. Por ejemplo, si hay $N$ símbolos con la misma probabilidad, entonces $P(s) = \frac{1}{N}$ y:
+	\[H(S) = \log_2 N\]
+	\item Si un símbolo tiene probabilidad 1, la entropía es 0
+	\item La entropía es la incertidubre que tengo de que me llegue un símbolo u otro.
+\end{itemize}
+
+\subsubsection*{Ejemplo: Entropía con probabilidades no equiprobables}
+Para $S=\{A,B,C,D\}$ con $P(A)=\tfrac12$, $P(B)=\tfrac14$ y $P(C)=P(D)=\tfrac18$:
+\[
+\begin{aligned}
+H(S) &= -\Big(\tfrac12\log_2\tfrac12 + \tfrac14\log_2\tfrac14 + \tfrac18\log_2\tfrac18 + \tfrac18\log_2\tfrac18\Big) \\
+	&= \tfrac12\cdot 1 + \tfrac14\cdot 2 + \tfrac18\cdot 3 + \tfrac18\cdot 3 \\
+	&= 1{,}75 \text{ bits.}
+\end{aligned}
+\]
+
+\begin{NotaBox}
+Si los cuatro símbolos fueran equiprobables ($P(s)=\tfrac14$), entonces
+$H_{\text{eq}}=\log_2 4 = 2$ bits. Como $1{,}75<2$, concentrar probabilidad en
+algunos símbolos reduce la entropía.
+\end{NotaBox}
+
+Cuando hay un simbolo con más probabilidad que los demás, la entropía disminuye. Tenemos menos incertidubre sobre qué símbolo va a llegar.
+\subsection{Códigos}
+
+\textbf{Alfabeto:} conjunto de letras o símbolos utilizados para formar mensajes.
+
+\medskip
+
+\textbf{Código:} es un conjunto finito y no vacío de cadenas construidas a partir de un alfabeto.
+Cada cadena individual dentro del código se denomina \emph{palabra clave} o \emph{palabra código}.
+
+\medskip
+
+En términos formales, un \textbf{código} puede considerarse como una \emph{aplicación} o \emph{mapeo} entre dos conjuntos:
+\begin{itemize}
+    \item Un conjunto de símbolos denominado \textbf{alfabeto fuente}.
+    \item Otro conjunto de símbolos denominado \textbf{alfabeto código}.
+\end{itemize}
+
+De esta forma, cada símbolo del alfabeto fuente se representa mediante una palabra código en el alfabeto código.
+
+\textbf{Esquema de codificación:}
+
+\[
+f: S \rightarrow C^{+}
+\]
+
+donde:
+\begin{itemize}
+    \item $S$ representa el \textbf{alfabeto fuente}.
+    \item $C$ representa el \textbf{alfabeto código}.
+    \item $C^{+}$ denota el conjunto de todas las \textbf{cadenas no vacías} formadas a partir de los símbolos de $C$.
+\end{itemize}
+
+El esquema de codificación se define como una \textbf{función inyectiva}, es decir, a cada símbolo del alfabeto fuente le corresponde una única palabra código, y no existen dos símbolos distintos que tengan la misma representación.
+
+\textbf{Código unívocamente descifrable:}
+Un código es \emph{unívocamente descifrable} si, para cualquier secuencia de símbolos perteneciente al alfabeto código,
+existe como máximo una única secuencia de palabras código que pueda generar dicha secuencia.
+
+En otras palabras, la función de esquema de codificación es \textbf{reversible},
+ya que permite recuperar de manera única el mensaje original a partir de la secuencia codificada.
+
+\textbf{Código instantáneo:}
+Un código es \emph{instantáneo} si cada palabra código puede ser identificada y decodificada a medida que se recibe,
+leyendo la secuencia de izquierda a derecha, sin necesidad de conocer los símbolos que la siguen.
+
+\textbf{Código prefijo:}
+Un código es \emph{prefijo} si ninguna de sus palabras código es prefijo de otra.
+
+\medskip
+
+\textbf{Ejemplo:}
+El conjunto $\{0,\, 10,\, 110,\, 111\}$ es un código prefijo,
+mientras que $\{0,\, 01,\, 011\}$ no lo es, ya que \texttt{0} es prefijo de las demás.
+
+\begin{NotaBox}
+Relaciones clave entre clases de códigos:
+\begin{itemize}
+	\item \textbf{Prefijo} $\Rightarrow$ \textbf{instantáneo}.
+	\item \textbf{Prefijo} (e instantáneo) $\Rightarrow$ \textbf{unívocamente descifrable}.
+	\item Existen códigos \textbf{unívocamente descifrables} que no son instantáneos (ni prefijo), p. ej. $\{0,01\}$.
+\end{itemize}
+\end{NotaBox}
+
+\begin{NotaBox}
+Un código se denomina óptimo cuando es instantaneo y únivocamente descifrable.
+\end{NotaBox}
 
 \end{document}
