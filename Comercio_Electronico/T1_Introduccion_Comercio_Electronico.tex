@@ -3,7 +3,7 @@
 % ---- Idioma y tipografía
 \usepackage[spanish]{babel}
 \usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}  % (si usas XeLaTeX/LuaLaTeX, elimínala)
+\usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{microtype}
 
@@ -14,6 +14,7 @@
 % ---- Enlaces
 \usepackage[hidelinks]{hyperref}
 \usepackage{bookmark}
+
 % ---- Cabeceras y pies
 \usepackage{fancyhdr}
 \pagestyle{fancy}
@@ -40,14 +41,13 @@
 
 % ---- Metadatos reutilizables
 \newcommand{\asignatura}{Comercio Electrónico}
-\newcommand{\tema}{TEMA 1 — Introducción al Comercio Electrónico}  % <-- cambia el título del tema aquí
+\newcommand{\tema}{TEMA 1 — Introducción al Comercio Electrónico}
 \newcommand{\clase}{Clase 1}
-\newcommand{\fecha}{\today}                              % <-- pon la fecha de la clase
+\newcommand{\fecha}{\today}
 
 % ---- Cabecera con metadatos
 \lhead{\textsc{\asignatura}}
-\chead{\textbf{\tema}}
-\rhead{\clase\;|\; \fecha}
+\rhead{\textbf{\tema}}
 
 % ---- Estética de secciones
 \usepackage{titlesec}
@@ -56,8 +56,8 @@
 \titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{0.5em}{}
 
 % ---- Cajas útiles
-\newtcolorbox{ObjetivosBox}{
-	title={\faBullseye\; Índice},
+\newtcolorbox{ResumenBox}{
+	title={\faHighlighter\; Resumen rápido},
 	colback=uniSoft,
 	colframe=uniPrimary,
 	enhanced, breakable,
@@ -86,137 +86,168 @@
 	fonttitle=\bfseries
 }
 
-\newtcolorbox{RecordatorioBox}{
-	title={\faBell\; Recordatorio},
-	colback=uniAccent!15,
-	colframe=uniAccent,
-	enhanced, breakable,
-	left=8pt,right=8pt,top=8pt,bottom=8pt,
-	boxrule=0.8pt,
-	fonttitle=\bfseries
-}
-
 \newtcolorbox{ChecklistBox}{
-	title={\faTasks\; Tareas / Checklist},
+	title={\faTasks\; Ventajas / Inconvenientes},
 	colback=white,
 	colframe=uniPrimary,
 	enhanced, breakable,
 	left=8pt,right=8pt,top=8pt,bottom=8pt,
 	boxrule=0.8pt,
 	fonttitle=\bfseries
-}
-
-\newtcolorbox{ResumenBox}{
-	title={\faHighlighter\; Resumen rápido (5 líneas)},
-	colback=uniSoft,
-	colframe=uniPrimary,
-	enhanced, breakable,
-	left=8pt,right=8pt,top=8pt,bottom=8pt,
-	boxrule=0.8pt,
-	fonttitle=\bfseries
-}
-
-\newtcolorbox{VocabBox}{
-	title={\faLanguage\; Vocabulario clave},
-	colback=white,
-	colframe=uniPrimary,
-	enhanced, breakable,
-	left=8pt,right=8pt,top=8pt,bottom=8pt,
-	boxrule=0.8pt,
-	fonttitle=\bfseries
-}
-
-% ---- Tabla estilo evaluación (por si la necesitas hoy)
-\newcommand{\TablaEvaluacion}{
-	\begin{center}
-		\renewcommand{\arraystretch}{1.3}
-		\begin{tabular}{|l|c|c|c|}
-			\hline
-			\textbf{Criterio} & \textbf{Porcentaje} & \textbf{Obligatorio} & \textbf{Recuperable} \\
-			\hline
-			Teoría (25\% cada parcial) & 50\% & Sí & Sí \\
-			Práctica & 25\% & Sí & Sí \\
-			Aprovechamiento en clase & 10\% & No & No \\
-			Trabajo teórico & 15\% & No & Sí \\
-			\hline
-			\textbf{Total} & \textbf{100\%} &  &  \\
-			\hline
-		\end{tabular}
-	\end{center}
 }
 
 % =========================================================
 \begin{document}
 
-	% ---- Cabecera de ficha de clase (rellenable en cada sesión)
-		{\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill \textit{\clase, \fecha}}\\[0.4em]
-		\faUser\; Alumno/a: Alberto Díaz\hfill
-		\faChalkboardTeacher\; Vanesa Herrera Tirado\hfill
+{\large \textbf{\asignatura} \;—\; \textbf{\tema} \hfill \textit{\clase, \fecha}}\\[0.4em]
+\faUser\; Alumno/a: Alberto Díaz\hfill
+\faChalkboardTeacher\; Vanesa Herrera Tirado\hfill
 
-		\vspace{0.6em}
+\vspace{0.6em}
+\tableofcontents
 
-		\tableofcontents
+% ---------------------------------------------------------
+\section{¿Qué es el COE?}
+\begin{DefBox}
+El \textbf{COE} (Comercio Electrónico) es una disciplina que estudia cómo las empresas utilizan las redes digitales para realizar actividades comerciales, comunicarse con clientes y proveedores, y gestionar información empresarial.
+\end{DefBox}
 
-		\section{La revolución de la industria y la Industria 4.0}
+\begin{NotaBox}
+El COE analiza el impacto de la tecnología en los hábitos de consumo, la comunicación, el marketing y los modelos de negocio.
+\end{NotaBox}
 
-		\begin{ResumenBox}
-		La Industria 4.0 representa la cuarta revolución industrial, caracterizada por la integración de tecnologías digitales avanzadas en los procesos productivos. Factores como el IIoT, la realidad extendida, la simulación, los gemelos digitales, la robótica autónoma y colaborativa, el big data y el cloud computing han sido habilitadores clave de esta transformación.
-		\end{ResumenBox}
+% ---------------------------------------------------------
+\section{¿Qué es el e-Commerce?}
+\begin{DefBox}
+Según Zwass (1996), el \textbf{comercio electrónico} es “compartir información empresarial, mantener relaciones comerciales y realizar transacciones comerciales a través de redes de telecomunicaciones”.
+\end{DefBox}
 
-		\subsection{Evolución de la industria}
-		La industria ha experimentado varias revoluciones:
-		\begin{itemize}
-			\item \textbf{Primera revolución industrial}: mecanización y uso del vapor.
-			\item \textbf{Segunda revolución industrial}: producción en masa y electricidad.
-			\item \textbf{Tercera revolución industrial}: automatización y electrónica.
-			\item \textbf{Cuarta revolución industrial (Industria 4.0)}: digitalización, conectividad y sistemas inteligentes.
-		\end{itemize}
+\begin{ResumenBox}
+El e-commerce consiste en comprar y vender bienes o servicios a través de Internet, utilizando medios electrónicos de pago y plataformas digitales.
+\end{ResumenBox}
 
-		\subsection{Factores habilitadores de la Industria 4.0}
-		\begin{itemize}
-			\item \textbf{IIoT (Industrial Internet of Things)}: Conexión de máquinas, sensores y sistemas para recopilar y analizar datos en tiempo real.
-			\item \textbf{Realidad extendida (XR)}: Uso de realidad aumentada y virtual para formación, mantenimiento y diseño.
-			\item \textbf{Simulación y gemelos digitales}: Modelado virtual de procesos y productos para optimizar y predecir comportamientos.
-			\item \textbf{Robótica autónoma y colaborativa}: Robots que trabajan de forma independiente o junto a humanos, aumentando la flexibilidad y eficiencia.
-			\item \textbf{Big Data}: Análisis de grandes volúmenes de datos para mejorar la toma de decisiones y la personalización.
-			\item \textbf{Cloud Computing}: Almacenamiento y procesamiento de datos en la nube, facilitando el acceso y la escalabilidad.
-		\end{itemize}
+% ---------------------------------------------------------
+\section{La revolución industrial y la Industria 4.0}
+\subsection{Evolución histórica}
+\begin{itemize}
+	\item \textbf{1ª Revolución Industrial}: mecanización mediante la máquina de vapor.
+	\item \textbf{2ª Revolución Industrial}: electricidad y producción en masa.
+	\item \textbf{3ª Revolución Industrial}: automatización e Internet.
+	\item \textbf{4ª Revolución Industrial (Industria 4.0)}: integración digital, IA, IoT y sistemas inteligentes.
+\end{itemize}
 
-		\begin{NotaBox}
-		La combinación de estos factores permite una producción más flexible, eficiente y personalizada, así como nuevos modelos de negocio y servicios.
-		\end{NotaBox}
+\subsection{Concepto}
+\begin{DefBox}
+La \textbf{Industria 4.0} integra sistemas físicos y virtuales que cooperan a nivel global mediante tecnologías como el Internet de las Cosas, inteligencia artificial, robótica, big data y realidad aumentada.
+\end{DefBox}
 
-		\section{Digitalización vs Transformación digital}
+% ---------------------------------------------------------
+\section{Sistemas empresariales digitales}
 
-		\begin{ResumenBox}
-		La digitalización convierte procesos analógicos o físicos en digitales. La transformación digital va más allá: implica rediseñar procesos y modelos de negocio usando tecnología para crear valor y ventajas competitivas, cambio estratégico, cambio a nivel global.
-		\end{ResumenBox}
+\subsection{EDI — Electronic Data Interchange}
+\begin{DefBox}
+El \textbf{EDI} (Intercambio Electrónico de Datos) permite que empresas intercambien información comercial (facturas, pedidos, inventarios) de forma automática y segura entre sus sistemas informáticos.
+\end{DefBox}
 
-		\begin{NotaBox}
-		La digitalización no modifica el modelo de negocio ni la experiencia del usuario; simplemente traslada procesos existentes al entorno digital sin transformarlos en profundidad.
-		\end{NotaBox}
+\subsection{CRM — Customer Relationship Management}
+\begin{DefBox}
+El \textbf{CRM} es un sistema de gestión de relaciones con los clientes. Centraliza datos de ventas, marketing y soporte para fidelizar, personalizar ofertas y mejorar la atención al cliente.
+\end{DefBox}
 
-		\subsection{Ventajas de la transformación digital}
+\subsection{Just in Time}
+\begin{DefBox}
+El método \textbf{Just in Time} busca producir y entregar solo lo necesario, en el momento exacto, reduciendo inventarios y desperdicio. Fue popularizado por Toyota.
+\end{DefBox}
 
-		\begin{ChecklistBox}
-		\begin{itemize}
-			\item \textbf{Captación de nuevos clientes}: Permite acceder a mercados más amplios y atraer públicos que antes no eran alcanzables.
-			\item \textbf{Ventaja competitiva}: Facilita la diferenciación frente a la competencia mediante innovación y agilidad.
-			\item \textbf{Mejora de la eficiencia}: Automatiza procesos, reduce errores y optimiza recursos, lo que disminuye costes y tiempos.
-			\item \textbf{Alcance global}: Elimina barreras geográficas, permitiendo operar y ofrecer servicios a nivel internacional.
-			\item \textbf{Adaptabilidad}: Favorece la capacidad de respuesta ante cambios del mercado y nuevas tendencias tecnológicas.
-		\end{itemize}
-		\end{ChecklistBox}
+\subsection{ERP — Enterprise Resource Planning}
+\begin{DefBox}
+El \textbf{ERP} integra todas las áreas de una empresa (finanzas, recursos humanos, logística, ventas) en una única base de datos, mejorando la eficiencia y la trazabilidad de la información.
+\end{DefBox}
 
-		\subsection{Inconvenientes y retos de la transformación digital}
+\subsection{BI — Business Intelligence}
+\begin{DefBox}
+El \textbf{BI} (Inteligencia Empresarial) es el conjunto de herramientas y metodologías que permiten analizar datos para apoyar la toma de decisiones estratégicas.
+\end{DefBox}
 
-		\begin{ChecklistBox}
-		\begin{itemize}
-			\item \textbf{Inversión significativa}: Requiere recursos económicos y humanos para implementar nuevas tecnologías y capacitar al personal.
-			\item \textbf{Brecha digital}: No todos los empleados o clientes tienen el mismo acceso o habilidades tecnológicas, lo que puede generar desigualdades.
-			\item \textbf{Complejidad tecnológica}: Integrar sistemas y procesos digitales puede ser complejo y requerir una gestión del cambio adecuada.
-			\item \textbf{Impacto laboral}: La automatización y digitalización pueden provocar la desaparición de ciertos puestos de trabajo y la necesidad de reconversión profesional.
-		\end{itemize}
-		\end{ChecklistBox}
+% ---------------------------------------------------------
+\section{Tipos de modelos comerciales digitales (Diapositiva 95)}
+
+\subsection{Perfiles comerciales}
+\begin{itemize}
+	\item \textbf{Productos propios}
+	\item \textbf{Afiliación}
+	\item \textbf{Dropshipping}
+	\item \textbf{Suscripción}
+	\item \textbf{Marketplaces}
+\end{itemize}
+
+\subsection{Tipos de relación}
+\begin{itemize}
+	\item \textbf{B2B (Business to Business)}: entre empresas.
+	\item \textbf{B2C (Business to Consumer)}: empresa → consumidor.
+	\item \textbf{C2C (Consumer to Consumer)}: entre particulares.
+	\item \textbf{B2B2C / B2C2C}: modelos mixtos intermedios.
+\end{itemize}
+
+\subsection{Tipos de transacción}
+\begin{itemize}
+	\item Venta directa
+	\item Venta flash
+	\item Subastas
+	\item Modelos mixtos
+\end{itemize}
+
+% ---------------------------------------------------------
+\section{Ventajas e inconvenientes de la digitalización}
+
+\begin{ChecklistBox}
+\textbf{Ventajas:}
+\begin{itemize}
+	\item Mayor eficiencia y productividad.
+	\item Acceso a mercados globales.
+	\item Innovación y ventaja competitiva.
+	\item Reducción de costes y tiempos.
+	\item Adaptabilidad ante cambios.
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{Inconvenientes:}
+\begin{itemize}
+	\item Inversión inicial alta.
+	\item Brecha digital y desigualdades tecnológicas.
+	\item Complejidad de implementación.
+	\item Riesgos de ciberseguridad.
+	\item Impacto laboral (automatización).
+\end{itemize}
+\end{ChecklistBox}
+
+% ---------------------------------------------------------
+\section{Historia del e-Commerce}
+\begin{itemize}
+	\item \textbf{1960–70}: EDI y teleshopping.
+	\item \textbf{1990s}: primeras webs comerciales (Pizza Hut, Lego, NetMarket).
+	\item \textbf{2000–2020}: expansión global, apps móviles, redes sociales y logística avanzada.
+	\item \textbf{2014–hoy}: auge del social commerce e integración omnicanal.
+\end{itemize}
+
+% ---------------------------------------------------------
+\section{Presente y futuro del e-Commerce}
+
+\subsection{Tendencias actuales}
+\begin{itemize}
+	\item \textbf{Social y Live Commerce}: compras en directo desde redes sociales.
+	\item \textbf{M-Commerce}: crecimiento del comercio móvil.
+	\item \textbf{Omnicanalidad}: integración entre tienda física y digital.
+	\item \textbf{Pagos digitales}: wallets, Bizum, pagos fraccionados.
+	\item \textbf{Logística avanzada}: entregas rápidas, sostenibilidad, trazabilidad.
+\end{itemize}
+
+\subsection{Tendencias futuras}
+\begin{itemize}
+	\item \textbf{Realidad virtual y aumentada} para experiencias inmersivas.
+	\item \textbf{Asistentes virtuales y chatbots} para atención personalizada.
+	\item \textbf{IA predictiva} para recomendaciones y previsión de demanda.
+	\item \textbf{Blockchain y tokenización} en trazabilidad y pagos.
+\end{itemize}
 
 \end{document}
