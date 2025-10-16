@@ -313,6 +313,12 @@ Curva elíptica & Sí & Sí & Sí \\ \hline
 \label{tab:algoritmos_cripto}
 \end{table}
 
+\begin{NotaBox}
+El algoritmo de \textbf{curva elíptica} utilizado para la firma digital es el \textbf{ECDSA} (\emph{Elliptic Curve Digital Signature Algorithm}).
+Para el \textbf{cifrado de claves} se emplea \textbf{ECC} (\emph{Elliptic Curve Cryptography}), y para el \textbf{intercambio de claves}, el algoritmo \textbf{ECDH} (\emph{Elliptic Curve Diffie--Hellman}).
+\end{NotaBox}
+
+
 \subsection{RSA}
 
 El algoritmo \textbf{RSA} (Rivest–Shamir–Adleman) es uno de los sistemas de cifrado asimétrico más utilizados.
@@ -403,5 +409,112 @@ K = (Y_A)^{X_B} \bmod q
     \includegraphics[width=0.5\textwidth]{resources/MITM-Diffie-Hellman.png}
     \captionof{figure}{Ataque Man-in-the-Middle en Diffie--Hellman}
 \end{center}
+
+\subsection{DSS}
+
+\textbf{Digital Signature Standard (DSS):}
+\begin{itemize}
+    \item Utiliza el algoritmo de firma digital junto con \textbf{SHA-1}.
+    \item No puede emplearse para \textbf{cifrado} ni para \textbf{intercambio de claves}, únicamente para \textbf{firma digital}.
+\end{itemize}
+
+\subsection{ECC}
+
+\textbf{Elliptic Curve Cryptography (ECC):}
+\begin{itemize}
+    \item Similar a \textbf{RSA}, pero funciona con claves más pequeñas.
+    \item Ofrece un nivel de confianza algo menor que RSA.
+    \item Basado en el \textbf{problema de la curva elíptica}.
+\end{itemize}
+
+
+
+\section{Firmas digitales}
+
+Una \emph{firma digital} es un patrón de bits dependiente de los datos, generado por un agente en función de un archivo o mensaje. Su propósito es garantizar la autenticidad, integridad y no repudio de la información firmada.
+
+\subsection{Algoritmos de firma digital}
+Entre los algoritmos más utilizados se encuentran:
+\begin{itemize}
+    \item DSA (Digital Signature Algorithm)
+    \item RSA (Rivest–Shamir–Adleman)
+    \item ECDSA (Elliptic Curve Digital Signature Algorithm)
+\end{itemize}
+
+\subsection{Elementos esenciales del proceso de firma digital}
+El proceso de firma digital consta de los siguientes pasos:
+\begin{enumerate}
+    \item Se calcula un \textbf{resumen} (hash) del documento mediante una función hash segura.
+    \item El firmante aplica su \textbf{clave privada} sobre el hash mediante el algoritmo de firma, generando la firma digital.
+    \item Se envía el documento junto con la firma.
+    \item El receptor calcula nuevamente el hash y utiliza la \textbf{clave pública} del firmante para verificar la validez de la firma.
+\end{enumerate}
+
+\subsection{Propiedades de la firma digital}
+\begin{itemize}
+    \item Verifica la identidad del autor y la fecha/hora de la firma.
+    \item Autentica el contenido en el momento de la firma.
+    \item Permite la verificación por terceros en caso de disputa.
+\end{itemize}
+
+\subsection{Ataques}
+\begin{description}
+    \item[Key-only attack:] El atacante solo conoce la clave pública.
+    \item[Known message attack:] El atacante conoce varios pares (mensaje, firma).
+    \item[Generic chosen message attack:] El atacante elige una lista de mensajes independientemente de la clave pública de A y obtiene de A firmas válidas para esos mensajes.
+    \item[Directed chosen message attack:] Igual que el anterior, pero el atacante elige los mensajes en función de la clave pública de A.
+\end{description}
+
+\subsection{Falsificación}
+\begin{itemize}
+    \item \textbf{Total break:} El atacante obtiene la clave privada y puede generar firmas válidas para cualquier mensaje.
+    \item \textbf{Universal forgery:} El atacante genera firmas válidas para cualquier mensaje sin conocer la clave privada.
+    \item \textbf{Selective forgery:} El atacante falsifica una firma válida para un mensaje específico.
+    \item \textbf{Existential forgery:} El atacante genera al menos una firma válida para algún mensaje (aunque no tenga sentido práctico).
+\end{itemize}
+
+\subsection{Certificado de clave pública}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.75\textwidth]{resources/PublicKey_CA.png}
+    \caption{Certificado de clave pública emitido por una Autoridad de Certificación (CA).}
+\end{figure}
+
+El certificado de clave pública contiene:
+\begin{itemize}
+    \item Información del propietario.
+    \item La clave pública.
+    \item Información de la CA (por ejemplo, en España la FNMT).
+    \item La firma digital de la CA.
+\end{itemize}
+
+\subsection{Sobres digitales}
+
+Un \emph{sobre digital} combina cifrado simétrico y asimétrico para proteger un mensaje.
+El emisor genera una \textbf{clave simétrica aleatoria} para cifrar el mensaje y luego cifra dicha clave con la \textbf{clave pública del receptor}.
+Ambos elementos (mensaje cifrado y clave cifrada) forman el sobre digital.
+El receptor usa su \textbf{clave privada} para recuperar la clave simétrica y descifrar el mensaje.
+
+\begin{center}
+    \includegraphics[width=0.65\textwidth]{resources/DigitalEnvelopes.png}
+    \captionof{figure}{Esquema de un sobre digital}
+\end{center}
+
+\section{Números aleatorios}
+
+\subsection{Aleatorios vs. Pseudoaleatorios}
+
+Los \textbf{números aleatorios} son impredecibles y no siguen un patrón, mientras que los \textbf{números pseudoaleatorios} son generados por algoritmos deterministas y pueden reproducirse si se conoce la semilla inicial.
+
+Aun así, los números pseudoaleatorios pueden considerarse impredecibles si la \textbf{fuente de entropía} utilizada (por ejemplo, radiación o ruido térmico) proviene de un fenómeno natural. (TRNG) True Random Number Generator
+
+\subsection{Propiedades de los números aleatorios}
+
+\begin{itemize}
+    \item \textbf{Uniformidad:} cada valor dentro del rango tiene la misma probabilidad de ser seleccionado.
+    \item \textbf{Independencia:} la aparición de un número no afecta la aparición de los demás.
+    \item \textbf{No repetición:} en una secuencia dada, los números no deben repetirse.
+    \item \textbf{Impredecibilidad:} es imposible anticipar el siguiente número en la secuencia basándose en los anteriores.
+\end{itemize}
 
 \end{document}
