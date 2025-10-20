@@ -487,4 +487,117 @@ Relaciones clave entre clases de códigos:
 Un código se denomina óptimo cuando es instantaneo y únivocamente descifrable.
 \end{NotaBox}
 
+\section{Medidas de Compresión}
+
+A continuación se presentan las principales medidas empleadas para evaluar la eficiencia de un algoritmo de compresión.
+
+\subsection*{Definiciones}
+
+\begin{itemize}
+    \item $o$: Longitud del archivo original (en bytes).
+    \item $c$: Longitud del archivo comprimido (en bytes).
+\end{itemize}
+
+\subsection*{Fórmulas}
+
+\paragraph{Longitud media por símbolo (LMS):}
+\begin{equation}
+    \mathrm{LMS} = \frac{c \times 8}{o} \quad [\text{bits/símbolo}]
+\end{equation}
+
+Cuando se trabaja con imágenes, esta métrica se expresa como \textbf{bits por píxel (bpp)}.
+
+\paragraph{Factor o razón de compresión (FC):}
+\begin{equation}
+    \mathrm{FC} = \frac{o}{c}
+\end{equation}
+Por ejemplo, un valor de $\mathrm{FC} = 3$ indica una compresión de $3\!:\!1$.
+
+\paragraph{Tamaño comprimido relativo (TCR):}
+\begin{equation}
+    \mathrm{TCR} = \frac{c}{o}
+\end{equation}
+Por ejemplo, un valor de $\mathrm{TCR} = 0.33$.
+
+\paragraph{Compresión relativa (CR):}
+\begin{equation}
+    \mathrm{CR} = \frac{o - c}{o} = 1 - \mathrm{TCR}
+\end{equation}
+Por ejemplo, un valor de $\mathrm{CR} = 0.66$.
+
+\section{Medidas de Error}
+
+Las medidas de error permiten cuantificar la diferencia entre una señal original y su versión reconstruida o aproximada después de un proceso de compresión. A continuación, se presentan las métricas más utilizadas.
+
+\subsection*{Error cuadrático medio (MSE)}
+
+El \textbf{Error Cuadrático Medio} (\textit{Mean Squared Error}, MSE) mide la diferencia promedio al cuadrado entre los valores originales y los valores reconstruidos. Se define como:
+
+\begin{equation}
+    \mathrm{MSE} = \frac{1}{N} \sum_{i=1}^{N} (x_i - y_i)^2
+\end{equation}
+
+donde:
+\begin{itemize}
+    \item $x_i$ es el valor original,
+    \item $y_i$ es el valor reconstruido o aproximado,
+    \item $N$ es el número total de muestras o elementos comparados.
+\end{itemize}
+
+\paragraph{MSE para imágenes.}
+Sean $I$ e $I'$ dos imágenes de tamaño $n \times m$, donde $I'$ es una aproximación de $I$. El MSE entre ambas imágenes se calcula como:
+
+\begin{equation}
+    \mathrm{MSE}(I, I') = \frac{1}{n \, m} \sum_{i=0}^{n-1} \sum_{j=0}^{m-1} \bigl[ I(i,j) - I'(i,j) \bigr]^2
+\end{equation}
+
+\subsection*{Relación pico señal a ruido (PSNR)}
+
+El \textbf{Peak Signal-to-Noise Ratio} (PSNR) se emplea comúnmente para evaluar la calidad de imágenes o vídeos comprimidos. Se define en función del MSE como:
+
+\begin{equation}
+    \mathrm{PSNR} = 10 \, \log_{10} \left( \frac{L^2}{\mathrm{MSE}} \right)
+\end{equation}
+
+donde $L$ representa el valor máximo posible de un píxel (por ejemplo, $L = 255$ para imágenes de 8 bits por canal).
+
+La unidad de medida del PSNR es el \textbf{decibelio (dB)}. Valores más altos de PSNR indican una mejor calidad de reconstrucción.
+
+\section{Proceso de Compresión}
+
+Se divide en dos fases. Modelización y codificación.
+\begin{figure}[!htbp]
+	\centering
+	\includegraphics[width=0.85\linewidth]{resources/Compression_Process.png}
+	\caption{Fases del proceso de compresión: modelización y codificación.}
+	\label{fig:compression-process}
+\end{figure}
+
+El modelo puede abstraerse de la fuente, puede generalizar detalles específicos.
+
+El modelo puede ser deterministico, es decir, mismo comportamiento en el descodificador como en el codificador.
+
+Un modelo realiza una estimación de la probabilidad de los símbolos.
+
+\subsection{Modelo no adaptativo}
+
+Probabilidad de cada simbolo predefinida. Es una información que tanto el codificador como el decodificador conocen de antemano.
+Simple y fácil de implementar, pero no se adapta a cambios en la fuente.
+
+\subsection{Modelo semi-adaptativo}
+
+Realiza una primera lectura de los datos a comprimir para así asignar las probabilidades de los símbolos.
+
+Se necesita tener el mensaje completo antes de codificar, introduce overhead, requiere enviar la codificación de las probabilidades al decodificador.
+
+\subsection{Modelo Adaptativo}
+Su funcionamiento permite analizar la distribución de los símbolos a medida que se van procesando. No requiere una pasada previa por los datos ni enviar información adicional al decodificador.
+
+Comforme se vayan procesando los símbolos, se van actualizando las probabilidades. Sirve para streaming de datos.
+
+\subsection{Codificadores estadísticos}
+Especialmente útiles en la compresión de imágenes
+Se basan en asignar palabras codigo a partir de las estimaciones de aparación de los símbolos. Dos tipos
+codigos de prefijo y codigos aritmeticos.
+
 \end{document}
