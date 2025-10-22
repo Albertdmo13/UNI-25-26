@@ -1,0 +1,220 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---- Idioma y tipografía
+\usepackage[spanish, es-noquoting, es-noshorthands]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc} % eliminar si usas XeLaTeX/LuaLaTeX
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{float}
+% ---- Matemáticas
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% ---- Márgenes y diseño
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{parskip}
+
+% ---- Enlaces
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+
+% ---- Cabeceras y pies
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\lhead{\textsc{\asignatura}}
+\rhead{\textbf{\tema}}
+\cfoot{\thepage}
+
+% ---- Listas y símbolos
+\usepackage{enumitem}
+\setlist{itemsep=0.3em, topsep=0.5em}
+
+% ---- Iconos y color
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% ---- Figuras
+\usepackage{graphicx}
+\usepackage{caption}
+
+% ---- Colores propios
+\definecolor{uniPrimary}{HTML}{0A7AC3}
+\definecolor{uniSoft}{HTML}{E9F4FB}
+\definecolor{uniAccent}{HTML}{F5B700}
+\definecolor{uniOK}{HTML}{2E7D32}
+\definecolor{uniWarn}{HTML}{C62828}
+
+% ---- Metadatos reutilizables
+\newcommand{\asignatura}{Seguridad de Sistemas Informáticos}
+\newcommand{\tema}{Tema 3 — Software Malicioso}
+\newcommand{\clase}{Clase 1}
+
+% ---- Estética de secciones
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uniPrimary}}{\thesection}{0.6em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{0.5em}{}
+
+% ---- Cajas reutilizables
+\tcbset{
+    commonstyle/.style={
+        enhanced, breakable,
+        left=8pt,right=8pt,top=8pt,bottom=8pt,
+        boxrule=0.8pt,
+        fonttitle=\bfseries
+    }
+}
+
+\newtcolorbox{ObjetivosBox}[1][]{
+    commonstyle,
+    title={\faBullseye\; Índice},
+    colback=uniSoft, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{DefBox}[1][]{
+    commonstyle,
+    title={\faBook\; Definición},
+    colback=white, colframe=uniAccent,#1
+}
+
+\newtcolorbox{NotaBox}[1][]{
+    commonstyle,
+    title={\faStickyNote\; Nota},
+    colback=white, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{RecordatorioBox}[1][]{
+    commonstyle,
+    title={\faBell\; Recordatorio},
+    colback=uniAccent!15, colframe=uniAccent,#1
+}
+
+\newtcolorbox{ChecklistBox}[1][]{
+    commonstyle,
+    title={\faTasks\; Tareas / Checklist},
+    colback=white, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{ResumenBox}[1][]{
+    commonstyle,
+    title={\faHighlighter\; Resumen rápido (5 líneas)},
+    colback=uniSoft, colframe=uniPrimary,#1
+}
+
+\newtcolorbox{VocabBox}[1][]{
+    commonstyle,
+    title={\faLanguage\; Vocabulario clave},
+    colback=white, colframe=uniPrimary,#1
+}
+
+% =========================================================
+\begin{document}
+
+\tableofcontents
+\newpage
+
+\section{Malware: Conceptos básicos}
+
+\begin{DefBox}
+    \textbf{Malware} (software malicioso) Un programa que se inserta en un sistema, generalmente de una forma encubierta, con el objetivo de comprometer la triada CIA: Confidencialidad, Integridad y Disponibilidad.
+\end{DefBox}
+
+\subsection{Terminología}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Nombre} & \textbf{Descripción resumida} \\ \hline
+Amenaza persistente avanzada (APT) & Ataques prolongados a objetivos estratégicos mediante múltiples técnicas y malware, usualmente patrocinados por el Estado. \\ \hline
+Software publicitario (Adware) & Publicidad integrada en software que genera anuncios o redirecciones. \\ \hline
+Equipo de ataque (Attack kit) & Conjunto de herramientas para crear y propagar nuevo malware automáticamente. \\ \hline
+Raíz automática (Auto-rooter) & Herramientas que permiten acceso remoto a máquinas comprometidas. \\ \hline
+Puerta trasera (Backdoor, Trapdoor) & Mecanismo que evita controles de seguridad y permite acceso no autorizado. \\ \hline
+Descargadores (Downloaders) & Código que instala otros programas maliciosos en un sistema comprometido. \\ \hline
+Descarga automática (Drive-by-download) & Código en un sitio web que explota vulnerabilidades al ser visitado. \\ \hline
+Exploits & Código diseñado para aprovechar vulnerabilidades específicas. \\ \hline
+Inundaciones (Flooders; DoS client) & Generan grandes volúmenes de tráfico para causar denegación de servicio. \\ \hline
+Registradores de teclas (Keyloggers) & Capturan las pulsaciones del teclado en un sistema. \\ \hline
+Bomba lógica (Logic bomb) & Código que se activa al cumplirse una condición, ejecutando una carga maliciosa. \\ \hline
+Macrovirus & Virus basado en macros de documentos que se ejecuta al abrir o editar archivos. \\ \hline
+Código móvil & Script o macro que puede ejecutarse en distintas plataformas sin modificación. \\ \hline
+Rootkit & Herramientas que ocultan el control del sistema tras obtener acceso de nivel raíz. \\ \hline
+Programas Spammers & Software que envía grandes volúmenes de correos no deseados. \\ \hline
+Software espía (Spyware) & Programa que recopila y transmite información confidencial del usuario. \\ \hline
+Caballo de Troya (Trojan horse) & Programa aparentemente útil que contiene funciones ocultas maliciosas. \\ \hline
+Virus & Malware que se replica al ejecutarse en otros archivos o programas. \\ \hline
+Gusano (Worm) & Programa que se propaga automáticamente a través de redes. \\ \hline
+Zombi, robot (Bot) & Programa en un equipo infectado que ejecuta órdenes para atacar otros sistemas. \\ \hline
+\end{tabular}
+\caption{Tipos de amenazas y malware con descripción resumida.}
+\end{table}
+
+\section{Tipos de Software Maliciosos}
+
+\subsection{Clasificación del Malware}
+
+Se puede clasificar en función de:
+\begin{itemize}
+    \item \textbf{Modo de propagación:} cómo se distribuye e infecta.
+    \item \textbf{Tipo de carga (payload) maliciosa:} acciones que realiza una vez dentro del sistema.
+\end{itemize}
+
+Los mecanismos de propagación incluyen:
+\begin{itemize}
+    \item Infección de contenido existentes
+    \item Explotación de vulnerabilidades
+    \item Ingeniería social
+\end{itemize}
+
+Los mecanismos de acción incluyen:
+\begin{itemize}
+    \item Corrupción de datos.
+    \item Robo de servicios o convertir en zombi.
+    \item Robo de información, registro de teclas.
+    \item Sigilo o ocultar su presencia.
+\end{itemize}
+
+\subsection{Attack Kits}
+
+Inicialmente, el desarrollo e implementación de malware requería habilidad técnica considerable.
+
+A principios de los 2000 surgieron herramientas y kits que automatizaban la creación y distribución de malware, facilitando su uso a atacantes menos experimentados.
+
+Las variantes de malware que se pueden generar implican un problema importante para los que defienden los sistemas.
+
+\subsection{Attack Sources}
+
+Otro avance es la fuente de ataques, ha pasado de un único atacante a redes de atacantes coordinados. Con objetivos lucrativos o políticos.
+
+\subsection{Amenazas Persistentes Avanzadas (APTs)}
+
+Una APT es una aplicación persistente y con buenos recuersos de una amplia variedad de tecnologías de intrusión.
+
+Se caracterizan por su amplia persistencia y sigilo. Normalmente atribuidas a organizaciones estatales o criminales.
+
+\textbf{Características del APT:}
+\begin{itemize}
+    \item \textbf{Persistente} Aplicación dedicada de los ataques durante un periodo prolongado.
+    \item \textbf{Avanzada} Uso de múltiples técnicas y herramientas para lograr el objetivo. Los componentes se seleccionan cuidadosamente para lograr un objetivo determinado designado especialmente para el ataque.
+\end{itemize}
+
+\textbf{Ataques APT:}
+
+
+
+\section{Virus}
+
+\section{Tipos de propagaciones y vulnerabilidades}
+
+\subsection{Descubrimiento de targets, objetivos}
+
+\subsection{Ataques basados en ingeniería social}
+
+\end{document}
