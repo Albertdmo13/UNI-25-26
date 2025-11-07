@@ -217,4 +217,52 @@ Se caracterizan por su amplia persistencia y sigilo. Normalmente atribuidas a or
 
 \subsection{Ataques basados en ingeniería social}
 
+\section{Contramedidas contra el malware}
+
+La solución más efectiva contra el malware es la \textbf{prevención}.
+
+Cuatro elementos principales de prevención:
+\begin{itemize}
+    \item \textbf{Política}
+    \item \textbf{Conciencia}
+    \item \textbf{Mitigación de vulnerabilidades}
+    \item \textbf{Mitigación de amenazas}
+\end{itemize}
+
+Si la prevención falla se pueden usar mecanismos técnicos para respaldar las siguientes opciones de mitigación:
+\begin{itemize}
+    \item \textbf{Detección}
+    \item \textbf{Identificación}
+    \item \textbf{Eliminación}
+\end{itemize}
+
+\subsection{Generaciones de software antivirus}
+
+\begin{itemize}
+    \item \textbf{Primera generación:} Escaneres simples. Limitado a malware conocido. Firma hash de malware.
+    \item \textbf{Segunda generación:} Escáneres heuristicos.
+    \item \textbf{Tercera generación:} Trampas de actividad.
+    \item \textbf{Cuarta generación:} Protección con todas las funciones.
+\end{itemize}
+
+\subsection{Análisis de zona de pruebas (Sandbox)}
+
+Ejecutar código potencialmente malicioso en un entorno limitado emulado o en una maquina virtual.
+
+Permite que el código se ejecute en un entorno limitado y controlado donde su compotramiento puede monitorizarse sin riesgo para el sistema anfitrión.
+
+\subsection{Análisis dinámico de malware}
+
+Se integra con el sistema operativo de una computadora y monitoriza el comportamiento del malware en riempo real.
+
+Denido a que el código malicioso debe ejecutarse para observar su comportamiento, el análisis dinámico es más efectivo para detectar malware desconocido o polimórfico.
+
+\subsection{Enfoques de escaneo perimetral}
+
+El software antivirus generalmente se incluye en los servicios de proxy web y de correo electrónico ejecuta un firewall de una organización
+
+También se pueden implementar sistemas de detección y prevención de intrusiones (IDS/IPS) en el perímetro de la red para identificar y bloquear tráfico malicioso.
+
+El enfoque se limita a escanear software.
+
 \end{document}
