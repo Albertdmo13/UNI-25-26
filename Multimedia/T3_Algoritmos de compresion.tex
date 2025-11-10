@@ -1,0 +1,187 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{graphicx}
+
+% ---- Idioma y tipografía
+\usepackage[spanish]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% ---- Márgenes y diseño
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage{parskip}
+
+% ---- Enlaces
+\usepackage[hidelinks]{hyperref}
+\usepackage{bookmark}
+
+% ---- Cabeceras y pies
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0.4pt}
+\cfoot{\thepage}
+
+% ---- Listas y símbolos
+\usepackage{enumitem}
+\setlist{itemsep=0.25em, topsep=0.3em}
+
+% ---- Iconos y color
+\usepackage{fontawesome5}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{breakable,skins}
+
+% ---- Colores propios
+\definecolor{uniPrimary}{HTML}{0A7AC3}
+\definecolor{uniSoft}{HTML}{E9F4FB}
+\definecolor{uniAccent}{HTML}{F5B700}
+\definecolor{uniOK}{HTML}{2E7D32}
+\definecolor{uniWarn}{HTML}{C62828}
+
+% ---- Metadatos reutilizables
+\newcommand{\asignatura}{MULTIMEDIA}
+\newcommand{\tema}{TEMA 3 — Algoritmos de compresión}
+\newcommand{\clase}{Clase 3}
+\newcommand{\fecha}{\today}
+
+\usepackage{booktabs}
+\usepackage{siunitx}
+\usepackage{amsmath}
+
+% ---- Cabecera con metadatos
+\lhead{\textsc{\asignatura}}
+\rhead{\textbf{\tema}}
+
+% ---- Estética de secciones
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\color{uniPrimary}}{\thesection}{0.5em}{}
+\titleformat{\subsection}{\large\bfseries}{\thesubsection}{0.5em}{}
+\titleformat{\subsubsection}{\bfseries}{\thesubsubsection}{0.5em}{}
+
+% ---- Cajas útiles
+\newtcolorbox{ObjetivosBox}{
+	title={\faBullseye\; Índice},
+	colback=uniSoft,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{DefBox}{
+	title={\faBook\; Definición},
+	colback=white,
+	colframe=uniAccent,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{NotaBox}{
+	title={\faStickyNote\; Nota},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{RecordatorioBox}{
+	title={\faBell\; Recordatorio},
+	colback=uniAccent!15,
+	colframe=uniAccent,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{ChecklistBox}{
+	title={\faTasks\; Tareas / Checklist},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{ResumenBox}{
+	title={\faHighlighter\; Resumen rápido (5 líneas)},
+	colback=uniSoft,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+\newtcolorbox{VocabBox}{
+	title={\faLanguage\; Vocabulario clave},
+	colback=white,
+	colframe=uniPrimary,
+	enhanced, breakable,
+	left=8pt,right=8pt,top=8pt,bottom=8pt,
+	boxrule=0.8pt,
+	fonttitle=\bfseries
+}
+
+% =========================================================
+\begin{document}
+
+\section{Algoritmos con pérdidas}
+
+\subsection{Codificación Aritmética}
+
+A cada símbolo se le asigna un intervalo en el rango [0, 1) proporcional a su probabilidad. A medida que se procesan los símbolos, el intervalo se reduce según el símbolo actual, lo que permite representar la secuencia completa con un solo número dentro del intervalo final.
+
+Se basa en una función de distribución.
+
+\textbf{La función de distribución} es la función que especifica la probabilidad de que una variable aleatoria sea menor o igual que un valor dado.
+
+\[F_X(x) = P(X \leq x)\]
+
+\textbf{La función de probabilidad} es una función que describe la probabilidad de que una variable aleatoria continua tome un valor específico.
+
+\[ f_X(x) = \frac{d}{dx} F_X(x) \]
+
+En el caso de una variable aleatoria continua, la función toma valores en un rango continuo.
+
+\textbf{La función de distribución cumple}
+
+\[ \lim_{x \to \infty} F_X(x) = 1 \]
+
+Es monotona y creciente.
+
+La función de probabilidad es la derivada de la función de distribución.
+
+\[ F_X(x) = \int_{-\infty}^{x} f_X(t) \,dt \]
+
+Si tenemos un alfabeto ordenado \( S = \{s_1, s_2, \ldots, s_n\} \) con probabilidades \( P(s_i) \), se define la función de distribución de la probabilidad acumulada \( C(s_i) \) como:
+\[ C(s_i) = \sum_{j=1}^{i} P(s_j) \]
+
+Para codificar una secuencia de símbolos \( s_1, s_2, \ldots, s_k \), se sigue el siguiente procedimiento:
+\begin{enumerate}
+	\item Inicializar el intervalo \([low, high) = [0, 1)\).
+	\item Para cada símbolo \( s_i \) en la secuencia:
+	\begin{itemize}
+		\item Calcular el rango actual: \( range = high - low \).
+		\item Actualizar los límites del intervalo:
+		\[
+		high = low + range \times C(s_i)
+		\]
+		\[
+		low = low + range \times C(s_{i-1})
+		\]
+	\end{itemize}
+	\item Al finalizar, cualquier número dentro del intervalo final \([low, high)\) puede representar la secuencia codificada.
+
+\end{enumerate}
+
+\end{document}
