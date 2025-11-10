@@ -184,4 +184,19 @@ Para codificar una secuencia de símbolos \( s_1, s_2, \ldots, s_k \), se sigue 
 
 \end{enumerate}
 
+\subsection{Decodificación aritmética}
+
+Algoritmo de Decodificación recursiva de una etiqueta E con n caracteres dada una fuente F(A, P)
+
+\begin{itemize}
+	\item Calcular la distribución de probabilidad
+	\item Inicializar $low = 0$, $high = 1$
+	\item Para i desde 1 hasta n hacer:
+\[V = \frac{E - low}{high - low}\]
+	\item Buscar el símbolo $s$ tal que $C(s-1) \leq V < C(s)$
+	\item Actualización de los límites:
+\[high = low + (high - low) * C(s)\]
+\[low = low + (high - low) * C(s-1)\]
+\end{itemize}
+
 \end{document}
